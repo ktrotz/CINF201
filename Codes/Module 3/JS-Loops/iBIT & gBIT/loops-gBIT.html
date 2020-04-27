@@ -1,0 +1,140 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  
+  <!-- REQUIRED THREE ELEMENTS BELOW -->
+  <title id="theTitle"> loops-gBIT </title>
+  <link href="standardLesson.css" rel="stylesheet" />
+  <script src="standardLesson.js"> </script>
+  <!-- REQUIRED THREE ELEMENTS ABOVE -->
+ 
+</head>
+<body>
+
+
+
+    <section>
+        <h2> Group Built-It Task: (gBIT): </h2>
+        
+        <p>
+         Design a webpage that has a 100&times;10 (i.e., 100 rows of 10) table that will highlight the prime numbers from 1 to 1000. Below is a description of how to succeed. Still, it is up to your group to successfully complete the task.
+        </p>
+         <ul>
+          <li>
+          Construct a table using a <span class="code highlight">for</span> in a <span class="code highlight">for</span> loop. Remember that this webpage has an analysis of a BINGO card, which is a 5&times;5 table. Model your table after one like that. Every cell of your table should have a uniquely determined identifer. Example: The number 614 should appear in row 61, column 4, with id="r61c4". The number 470 should appear in row 46, column 10, with id="r46c10". (Note: The modulus <span class="code highlight">%</span> operator is very helpful, but as the latter example shows, there is a special case for when the modulus equals 0. Your group will need to plan around this <em>feature</em>.)
+          </li>
+          <li>
+          The algorithm for identifying the primes will be modelled after the somehwat inefficient <a href="https://en.wikipedia.org/wiki/Sieve_of_Eratosthenes">Sieve of Eratosthenes</a>. That is, for every possible divisor (from 2 up to the square root of 1000 &approx; 31). Familiarize yourself with the algorithm. Deliberate how to implement a way to show which table element are prime or composite. (For the sake of this assignment, treat 1 as <em>not prime</em>.) Essentially, you will be doing something with a <span class="code highlight">for</span> loop in a <span class="code highlight">for</span> loop. That is, <em>for every possible divisor from 2 to 31, for every possible number to check from 1 to 1000, does the division work evenly?</em>
+          </li>
+          <li>
+          It is up to your group how to design for success here. Would it be better to have...
+            <ol>
+            <li> ... an array of elements numbered 0 to 1000 in which every element is the name of the style class that will be used when the table is built? </li>
+            <li> ... the table built ahead of time then swap out the default style class using <span class="code highlight">document.getElementById(<em>yourID</em>).className = '<em>composite</em>'? </li>
+            <li> ... some other way of designing this goal? </li>
+            </ol><br />
+          Your table will look something like this (but have 100 rows properly stylized):
+          <table>
+           <tr>
+            <td style="background-color: skyblue;"> 1 </td>
+            <td style="background-color: hotpink;"> 2 </td>
+            <td style="background-color: hotpink;"> 3 </td>
+            <td style="background-color: skyblue;"> 4 </td>
+            <td style="background-color: hotpink;"> 5 </td>
+            <td style="background-color: skyblue;"> 6 </td>
+            <td style="background-color: hotpink;"> 7 </td>
+            <td style="background-color: skyblue;"> 8 </td>
+            <td style="background-color: skyblue;"> 9 </td>
+            <td style="background-color: skyblue;"> 10 </td>
+           </tr>
+           <tr>
+            <td style="background-color: hotpink;"> 11 </td>
+            <td style="background-color: skyblue;"> 12 </td>
+            <td style="background-color: hotpink;"> 13 </td>
+            <td style="background-color: skyblue;"> 14 </td>
+            <td style="background-color: skyblue;"> 15 </td>
+            <td style="background-color: skyblue;"> 16 </td>
+            <td style="background-color: hotpink;"> 17 </td>
+            <td style="background-color: skyblue;"> 18 </td>
+            <td style="background-color: hotpink;"> 19 </td>
+            <td style="background-color: skyblue;"> 20 </td>
+           </tr>
+           <tr>
+            <td style="background-color: skyblue;"> 21 </td>
+            <td style="background-color: skyblue;"> 22 </td>
+            <td style="background-color: hotpink;"> 23 </td>
+            <td style="background-color: skyblue;"> 24 </td>
+            <td style="background-color: skyblue;"> 25 </td>
+            <td style="background-color: skyblue;"> 26 </td>
+            <td style="background-color: skyblue;"> 27 </td>
+            <td style="background-color: skyblue;"> 28 </td>
+            <td style="background-color: hotpink;"> 29 </td>
+            <td style="background-color: skyblue;"> 30 </td>
+           </tr>
+          </table>
+
+          </li>
+          </ul>
+        </li>
+    </p>
+
+    </section>
+
+    <button type="button" onclick="primeTable()">Test out this script now.</button>
+    <script>
+
+        function primeTable() {
+            
+            //Global variables
+            maxValue = 1000;
+            primeColor = 'hotpink';
+            compositeColor = 'skyblue';
+
+            //Make array: 100x10
+            primes = ['composite', 'composite']; //default index 0 and 1
+
+            for (num = 2; num <= maxValue; num++) { //maxValue
+                primes.push( 'prime' ); //default
+
+                for (div = 2; div <= 10; div++) { //Math.sqrt(maxValue)
+
+                    /*Note: A prime number is only divisible by 1 and itself */
+
+                    //if number can be divided by something other than itself change default
+                    if ( num % div == 0 && num != div ) { 
+                        primes[num] = 'composite'; } 
+                    } 
+                } 
+
+
+                //Make table and set colors
+                document.write('<table>');
+
+                for (row = 1; row <= 100; row++ ) {
+                    document.write('<tr>');
+                    
+                    for (col = 1; col <= 10; col++ ) {
+                        cellNumber = (10 * (row - 1)) + col;
+                        output = '<td style="background-color: ';
+
+                        
+
+                        if (primes[cellNumber] == 'prime' ) {
+                            output += primeColor; }
+
+                        else {
+                            output += compositeColor; }
+
+                        output += ';  text-align: center;">' + cellNumber + '</td>';
+                        document.write(output);
+                    }   
+                    document.write('</tr>');
+                }
+            
+            document.write('</table>');
+        }
+    </script>
+
+</body>
+</html>

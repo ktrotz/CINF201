@@ -1,0 +1,62 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  
+  <!-- REQUIRED THREE ELEMENTS BELOW -->
+  <title id="theTitle"> </title>
+  <link href="standardLesson.css" rel="stylesheet" />
+  <script src="standardLesson.js"> </script>
+  <!-- REQUIRED THREE ELEMENTS ABOVE -->
+ 
+</head>
+<body>
+
+
+
+<section>
+
+<h2> Individual Built-It Task (iBIT): </h2>
+
+<p>
+    Fix the sample code above so that entering '10.12345' into the Guess A Number From 1 To 10 script works properly.
+</p>
+
+<pre class="codeblock highlight">
+Sample Code:
+&lt;script&gt;
+
+x = parseInt( prompt( 'Enter a number from 1 to 10' ));
+if ( x &gt; 10 ) 
+  { alert( 'Your guess is too high' ); }
+else if ( x &lt; 1 ) 
+  { alert( 'Your guess is too high' ); }
+else
+  { alert( 'You guessed a number from 1 to 10' ); }
+
+&lt;/script&gt;
+</pre>
+
+<p>
+<button class="sample" onclick="
+    x = parseFloat( prompt( 'Enter a number from 1 to 10' ));
+    
+    if ( x > 10 ) { 
+        alert( 'Your guess is too high.' );
+    } 
+    
+    else if ( x < 1 ) { 
+        alert('Your guess is too low.');
+    } 
+    
+    else { 
+        alert( 'You guessed a number from 1 to 10' ); 
+    } ">
+    
+    Test out this script now.</button> 
+</p>
+
+</section>
+
+</body>
+</html>

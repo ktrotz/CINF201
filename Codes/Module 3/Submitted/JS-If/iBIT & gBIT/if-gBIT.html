@@ -1,0 +1,142 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  
+  <!-- REQUIRED THREE ELEMENTS BELOW -->
+  <title id="theTitle"> </title>
+  <link href="standardLesson.css" rel="stylesheet" />
+  <script src="standardLesson.js"> </script>
+  <!-- REQUIRED THREE ELEMENTS ABOVE -->
+ 
+</head>
+<body>
+
+
+
+<section>
+
+<h2> Group Built-It Task (gBIT): </h2>
+
+<p>
+        Consider the logical operators in the following script as well as the modulus operator in the arithmetic section. The script should (but doesn't check for divisibility by 2 through 10. Explain what is actually happening with this script. Test it out using no fewer than 10 different examples. Determine how to fix the code so that it performs as intended.
+</p>
+
+<pre class="codeblock highlight">
+Sample Code:
+q1 = 'Enter the tens digit of your 2-digit number:';
+a = parseInt( prompt( q1 ));
+
+q2 = 'Enter the ones digit of your 2-digit number:';
+b = parseInt( prompt( q2 ));
+
+if ( a < 0 || a >= 10 )
+ { alert('Your tens digit is invalid: ' + a); }
+
+else if ( b < 0 || b >= 10 )
+ { alert('Your ones digit is invalid: ' + b); }
+
+else
+ {
+   number = 10*a + b;
+   output = 'you built the number ' + number;
+
+   if ( number % 2 == 0 ) 
+     { output += '\n' + number + ' is divisible by 2'; }
+
+   if ( number % 3 == 0 ) 
+     { output += '\n' + number + ' is divisible by 3'; }
+
+   if ( number % 4 == 0 ) 
+     { output += '\n' + number + ' is divisible by 4'; }
+
+   if ( number % 5 == 0 ) 
+     { output += '\n' + number + ' is divisible by 5'; }
+
+   if ( number % 6 == 0 ) 
+     { output += '\n' + number + ' is divisible by 6'; }
+
+   if ( number % 7 == 0 ) 
+     { output += '\n' + number + ' is divisible by 7'; }
+
+   if ( number % 8 == 0 ) 
+     { output += '\n' + number + ' is divisible by 8'; }
+
+   if ( number % 9 == 0 ) 
+     { output += '\n' + number + ' is divisible by 9'; }
+
+   if ( number % 10 == 0 ) 
+     { output += '\n' + number + ' is divisible by 10'; }
+
+   else
+     { output += '\n' + number + ' is prime'; } // ERROR: This else is attached only to the if statement above therfore any number not divisble by 10 is conisdered prime.
+
+ } // end defualt else
+
+alert( output );
+
+&lt;/script&gt;
+</pre>
+
+<p>
+<button class="sample" onclick="
+    q1 = 'Enter the tens digit of your 2-digit number:';
+a = parseInt( prompt( q1 ));
+
+q2 = 'Enter the ones digit of your 2-digit number:';
+b = parseInt( prompt( q2 ));
+
+number = 10*a + b;
+
+if ( a < 0 || a >= 10 )
+ { alert('Your tens digit is invalid: ' + a); }
+
+else if ( b < 0 || b >= 10 )
+ { alert('Your ones digit is invalid: ' + b); }
+
+else if(number % 2 == 0  && (number % 3 == 0 || number % 4 == 0 || number % 5 == 0 || number % 6 == 0 || number % 7 == 0 || number % 8 == 0 || number % 9 == 0))
+ {
+   output = 'You built the number ' + number;
+
+   if ( number % 2 == 0 ) 
+     { output += '\n' + number + ' is divisible by 2'; }
+
+   if ( number % 3 == 0 ) 
+     { output += '\n' + number + ' is divisible by 3'; }
+
+   if ( number % 4 == 0 ) 
+     { output += '\n' + number + ' is divisible by 4'; }
+
+   if ( number % 5 == 0 ) 
+     { output += '\n' + number + ' is divisible by 5'; }
+
+   if ( number % 6 == 0 ) 
+     { output += '\n' + number + ' is divisible by 6'; }
+
+   if ( number % 7 == 0 ) 
+     { output += '\n' + number + ' is divisible by 7'; }
+
+   if ( number % 8 == 0 ) 
+     { output += '\n' + number + ' is divisible by 8'; }
+
+   if ( number % 9 == 0 ) 
+     { output += '\n' + number + ' is divisible by 9'; }
+
+   if ( number % 10 == 0 ) 
+     { output += '\n' + number + ' is divisible by 10'; }  
+
+     alert( output ); 
+ } 
+ 
+else
+    { alert('\n' + number + ' is prime'); }
+ 
+">
+    
+    Test out this script now.</button> 
+</p>
+
+</section>
+
+</body>
+</html>

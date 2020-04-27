@@ -1,0 +1,247 @@
+
+body{
+    background-color: rgb(0, 11, 28); /* sets background color */
+}
+
+/* Space Talk Logo */
+.head-logo{ 
+    height: 0px; /* logo image height*/
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    color: white;
+ /*   text-shadow: 2px 1px 2px yellow; /*logo text shadow*/
+    font-size: 40px;
+
+    /*glow animation*/
+    -webkit-animation: glow 1s ease-in-out infinite alternate;
+    -moz-animation: glow 1s ease-in-out infinite alternate;
+    animation: glow 1s ease-in-out infinite alternate;
+}
+
+
+.what-is-space{ /*paragraph*/
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    color: white;
+    font-size: 20px;
+    word-wrap: break-word; /* prevents text from overflowing */
+    text-align: center; /* places texts in middle */
+}
+
+h2{ /*heading*/
+    -webkit-animation: flicker 5s ;
+    animation: flicker 5s ;
+}
+
+h1{ /*heading*/
+    -webkit-animation: flicker 5s infinite;
+    animation: flicker 5s infinite;
+}
+
+
+
+/* Trivia */
+#quizinfo{
+  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+  color: white;
+}
+
+.trivia {
+  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+  color: white;
+  text-align: center; /*text move to left */
+  border: 5px solid rgb(99, 116, 3); /*border surrounding all elements of the table */
+  padding: 10px; /*space between text and border*/
+  word-wrap: break-word; 
+  background-color: rgb(27, 41, 61);
+  border-radius: 50%;
+
+  /*hover animation*/
+  -webkit-transition-duration: 0.4s;
+  transition-duration: 0.4s;
+  cursor: pointer;
+}
+
+.trivia:hover {
+  background-color: #4CAF50;
+  color: white;
+}
+
+
+/* Planets Facts Table */
+table {
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    color: white;
+    text-align: left; /*text move to left */
+    border: 5px solid rgb(99, 116, 3); /*border surrounding all elements of the table */
+    padding: 10px; /*space between text and border*/
+    word-wrap: break-word;
+}
+
+table td{
+    text-align: center;
+
+    /*space between text and border */
+    padding-top: 40px;
+    padding-right: 40px;
+    padding-left: 20px;
+}
+table td img:nth-child(1) {
+    -webkit-animation: rotate 30s linear infinite;
+    -moz-animation: rotate 30s linear infinite;
+    -ms-animation: rotate 30s linear infinite;
+    -o-animation: rotate 30s linear infinite;
+    animation: rotate 30s linear infinite; 
+  } 
+
+#saturn-image{
+    -webkit-animation: rotate 0s linear infinite;
+    -moz-animation: rotate 0s linear infinite;
+    -ms-animation: rotate 0s linear infinite;
+    -o-animation: rotate 0s linear infinite;
+    animation: rotate 0s linear infinite;
+}
+
+#planet-facts th {
+    /*border surrounding table header row*/
+    background-color: rgb(99, 116, 3);
+    border: 5px solid rgb(99, 116, 3);
+    color: white;
+  }
+
+.facts { /*sets facts column characteristics*/ 
+    width: 300px;
+    text-align: left;
+    line-height: 20px;
+}
+
+
+/*Navigation Bar*/
+.navbar { /*set base for the bar*/
+    overflow: hidden;
+    background-color: rgb(0, 67, 112);
+    font-family: monospace;
+    text-decoration: none; /*takes out hyperlink underline*/
+}
+
+
+.navbar a { /* "Home" feature*/
+float: right; /* navigation links moved to the right*/
+font-size: 16px;
+color: white;
+text-align: center;
+padding: 10px 40px;
+text-decoration: none; /*takes out hyperlink underline*/
+}
+
+/* Dropdown Menu base */
+.solar-dropdown {
+float: right; /*navigation dropdown link moved to the right*/
+overflow: hidden;
+}
+
+/*Solar Sytem Dropdown Button*/
+.solar-dropdown .solar-button {
+font-size: 16px;  
+border: none;
+outline: none;
+color: white;
+padding: 10px 32px;
+background-color: inherit;
+font-family: inherit;
+margin: 0;
+}
+
+/* Hover feature for dropdown menu*/
+.navbar a:hover, .solar-dropdown:hover .solar-button {
+background-color:rgb(251, 253, 109);
+color: black;
+}
+
+.navbar a:active{
+    color: red; /*turns red when link is clicked*/
+}
+
+/*when Solar System dropdown menu is hovered over*/
+.solar-content {
+display: none;
+position: absolute;
+background-color: white;
+min-width: 160px;
+box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+z-index: 1;
+}
+
+/*each link in dropdown customized*/
+.solar-content a {
+float: none;
+color: black;
+padding: 12px 16px;
+text-decoration: none;
+display: block;
+text-align: left;
+}
+
+/* hover feature for links under solar system dropdown*/
+.solar-content a:hover {
+background-color: rgb(147, 224, 235);
+}
+
+.solar-dropdown:hover .solar-content {
+display: block;
+}
+
+footer{
+    text-decoration: none;
+    color: white;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    text-align: left;
+}
+
+/*ativated when you click the link*/
+footer a:visited {
+    text-decoration: none;
+    color: red;
+    text-align: left;
+  }
+  
+  @keyframes glow { /* @-webkit-keyframes */
+    from {
+      text-shadow: 0 0 30px #b69b03, 0 0 40px #b69b03, 0 0 50px #b69b03;
+    }
+    
+    to {
+      text-shadow: 0 0 30px #f7e707, 0 0 40px #f7e707, 0 0 50px #f7e707;
+    }
+  }
+
+  #sun-image {
+    -webkit-animation: rotate 30s linear infinite;
+    -moz-animation: rotate 30s linear infinite;
+    -ms-animation: rotate 30s linear infinite;
+    -o-animation: rotate 30s linear infinite;
+    animation: rotate 30s linear infinite; 
+  }
+
+  @keyframes rotate {
+    from {
+      transform: rotate(0deg);
+    }
+
+    to {
+      transform: rotate(360deg);
+    }
+  } 
+
+  @keyframes flicker
+    {
+        0% {opacity:0;}
+        9% {opacity:0;}
+        10% {opacity:.5;}
+        13% {opacity:0;}
+        20% {opacity:.5;}
+        25% {opacity:1;}
+    }
+    
+  
+
+
+  

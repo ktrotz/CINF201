@@ -1,0 +1,44 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  
+  <!-- REQUIRED THREE ELEMENTS BELOW -->
+  <title id="theTitle"> X </title>
+  <link href="standardLesson.css" rel="stylesheet" />
+  <script src="standardLesson.js"> </script>
+  <!-- REQUIRED THREE ELEMENTS ABOVE -->
+ 
+</head>
+<body>
+
+
+<section>
+<h2> Individiual Built-It Task (iBIT): </h2>
+
+<p>
+Make a flexible size multiplication table. Use <span class="code highlight">document.write(&nbsp;)</span> using nested <span class="code highlight">for&nbsp;(&nbsp;)&nbsp;{&nbsp;}</span> loops. The user gets to decide the size of the table (5-15). 
+</p>
+
+<p>
+    <button class="sample" onclick="
+
+    alert('Enter the dimensions for the multiplication table.')
+    variable = parseInt(prompt('Enter max variable: ')) + 1;  
+    size = parseInt(prompt('Enter max table size: ')) + 1;
+
+        for (var a = 1; a < variable; a++) {
+            document.write('<tr>');
+
+            for(var b = 1; b < size; b++) {
+                document.write('<td>'+ a*b + ' </td>');
+            }
+         document.write('</tr>' + '</br>');
+        }
+        ">Test out this script now.</button>
+    </p>
+
+</section>
+
+</body>
+</html>

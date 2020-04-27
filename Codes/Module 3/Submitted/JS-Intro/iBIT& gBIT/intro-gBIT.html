@@ -1,0 +1,227 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  
+  <!-- REQUIRED THREE ELEMENTS BELOW -->
+  <title id="theTitle"> </title>
+  <link href="standardLesson.css" rel="stylesheet" />
+  <script src="standardLesson.js"> </script>
+  <!-- REQUIRED THREE ELEMENTS ABOVE -->
+ 
+</head>
+<body>
+
+<header> 
+ <script>
+    buildHeader( );
+ </script>
+</header>
+
+<nav>
+<script>
+buildNavigationMenu( );
+</script>
+<div id="tableOfContents"> </div> <!-- TO BE CONSTRUCTED BY END DOM SCRIPT -->
+</nav> 
+
+<section>
+<h2> Where</span> JavaScript/ECMA goes </h2>
+
+<p>
+Simply put, one uses a element. And where to best put it depends how it will be used.
+</p>
+
+<ul>
+<li>
+If the element is defining variables or setting up ahead of the browser rendering the browser, then it belongs as a child of the element with the other set-up elements. (See the source code for this page for an example in the.)
+</li>
+
+<li>
+If the element is essentially building HTML for the browser, or if it needs user-interaction to continuing building HTML, then it belongs in the flow of the element as a child of whatever element makes the most sense given the context. (See the source code for this page for an example in the .)
+</li>
+
+<li>
+Finally, if the script is going to use or modify the, then it should occur after everything else in the element so that those HTML objects have been completely built at the time that the script executes. (Okay. It only needs to be in the element after anything affected by it, but best practice will be to keep it as the last child of the element unless absolutely necessary.)
+</li>
+</ul>
+</section>
+
+
+<section>
+<h2> External</span> Scripts </h2>
+
+<p>
+Just as stylesheets can have a element bring styles in from an external (and reusable) resource, scripts can be externalized. (Oddly, even though one might think to self-close it, such as, this sometimes causes the browser to skip directly over the attribute, thus loading none of the external scripts.
+</p>
+
+</section>
+
+
+
+<section>
+<h2> The alert( )</span> Function </h2>
+
+<p>
+The simplest JavaScript function that you should know is the >alert( );</span> This will simply pop up a small window with a message that the web designer builds. The user must click on the "OK" button to dismiss the alert. <button class="sample" onclick="alert('code:\nonclick=&quot;alert(\'your message\');&quot;');"> Test out the alert.</button>
+</p>
+
+<p>
+(At some point, check out the actual code here to see how what you see alerted isn't process as code. In particular: What does >\n</span> do? What does >&amp;quot;</span> do? How does >&amp;quot;</span> even show up right here? Why did these all have to be done this way?)
+</p>
+
+</section>
+
+<section>
+<h2> The confirm( )</span> Function </h2>
+
+<p>
+This gives almost the same appearance as the >alert( )</span> function, except that there is an additional option for the user to dismiss the message &ndash; "OK" or "Cancel". However, there is also an additional invisible funcitonality. The browser will receive a truth value. That is, either >true</span> or >false</span> is produced. And this information get be captured in a variable (next section) and used later on. <button class="sample" onclick="userResponse=confirm('code:\nonclick=&quot;confirm(\'your message\');&quot;'); alert('the script received the value: ' + userResponse);"> Test out the confirm.</button>
+</p>
+
+<p>
+(Again, sometime after reading the next section on variables, check out the actual code here to see how the confirmation values got captured and used.)
+</p>
+
+</section>
+
+<section>
+<h2> JavaScript/ECMA variables</span> </h2>
+
+<p>
+Basically, any unreserved word (sequence of alphanumerics starting with a letter) can be used as a variable. The <em>assignment operator</em> is attached to the right of the variable, and whatever information is to be captured by the variable goes to its right.
+</p>
+
+<p>
+Example 1: >myVariable = 10;</span> This assigns an number to the variable.
+</p>
+
+<p>
+Example 2: >myVariable = 50 + 2 * 10;</span> This will first calculate the value, and then assign it to the variable. Standard order of mathematical operations will apply, so this results in the value 70.
+</p>
+
+<p>
+The other main type of information that variables hold are <em>strings</em> of characters. These behave very differently from numerical data.
+</p>
+
+<p>
+Example 3: >myString = 'testing this out';</span> Although, we could have built this string using the string addition operator.
+</p>
+
+<p>
+Example 3 revisited: >myString = 'testing' + 'this' + 'out';</span> However, this is <em>not</em> the same string. We forgot to include the spaces as characters inside of any of the substrings.
+</p>
+
+<p>
+IMPORTANT!! One of the things that happens to catch off-guard a lot of programmers is when things really look like numbers but behave like strings.
+</p>
+
+<p>
+Example 4: >myString = '50' + 2 * 10;</span> Notice how the 50 is a <em>literal string</em> (because of the single-quotes). Here, the JavaScript will behave predictably, but not intuitively. The 2 * 10 only makes sense to be multiplied, so it is. But then, the resulting product 20 is turned into a literal string and merely <em>attached</em> to the '50' to yield the final string '5020'. 
+</p>
+
+<p>
+Example 5: >myString = '50' + 2 + 10;</span> This time, it would seem that this would do exactly the same process (Add 2 and 10 to get 12; Convert to string '12'; Then <em>concatenate</em> the strings to get '5012'.) And that would be wrong. In reality, the + sign is a numerical operator, reading left-to-right, until it becomes the string concatenation operator. And it never goes back to math mode during that set of operations. The final result here is actually the full concatenation '50210'.
+</p>
+
+<p>
+Example 6: >myString = '50' + (2 + 10);</span> Here, the order of operations forces the numerical addition to be first, before the + sign promotes to string concatenation. This result will be '5012'. 
+</p>
+
+<p>
+There are other data types besides numbers and strings. In fact, we encountered the <em>Boolean</em> values >true</span> and >false</span> from the >confirm( )</span> function.
+</p>
+
+<p>
+In a future lesson, we will see how to develop logic around user-supplied data stored in variables. For this lesson, we will keep to a superficial use of user-supplied data.
+</p>
+
+
+</section>
+
+
+<section>
+<h2> The prompt( )</span> Function </h2>
+
+<p>
+A great way to capture information from the user is to have them type it. This can be done using the >prompt( )</span> function. This time, the pop-window will include a text field. <button class="sample" onclick="userResponse=prompt('code:\nonclick=&quot;prompt(\'Type your message.\');&quot;\n\nType your message.'); alert('code:\nuserResponse = prompt(\'Type your message.\');\nalert(\'The script received the value\' + userResponse);\n\nThe script received the value: ' + userResponse);"> Test out the prompt.</button>. Interesting is that if the user cancels the prompt, the return value is >null</span>. This is yet another tpye of information that JavaScript will keep track of. (That is, it expected information but received null.)
+</p>
+
+<p>
+A word of caution: If the user types anything into the >prompt( )</span> that looks like a number, <em>it will still be treated as a string!</em>. Anything received by the >prompt( )</span> that needs to function as a number needs to be sent into a >parseInt( )</span> (for integers) or a >parseFloat( )</span> (for floating-point decimal numbers).
+</p>
+
+<p>
+Example 7: >alert( 10 + prompt( &apos;Enter a number&apos; ));</span><br />
+Example 8: >alert( 10 + parseInt( prompt( &apos;Enter a number&apos; )));</span>.<br/>
+Example 7 will concatenate strings but Example 8 will do the math.
+</p>
+
+</section>
+
+
+<section>
+<h2> The document.write( )</span> Function </h2>
+
+<p>
+One of the most useful things that can be done as a page loads is to build it using information obtained immediately from the user. We can >prompt( )</span> the user for their name <em>before</em> the page is done loading and then use it in building content on the webpage using >document.write( )</span> function. Perhaps, the single most important things to remember when using this >document.write( )</span> function is that if you attempt to use it <em>after</em> the load is done building, it will try to start to rebuild a page from scratch, unloading pretty much everything else that one might have wanted to keep in the viewport. This is generally behavior that one will not want, but then again, one person's bug could be another person's feature.
+</p>
+
+<p>
+Below seems to be the <em>same exact paragraph</em> as the one above, but one of these is written directly using HTML while the other is using JavaScript to tell the browser how to build the HTML. The JavaSCript version builds a variable (called <em>output</em>), and keep adding to the contents. Then, finally, the >document.write( )</span> function sends to contents of the variable to the browser which will then render it as HTML. Note: <em>escape sequences</em> and <em>character entities</em> need to be very carefully controlled by the programmer here because some of the quotes need to speak to the JavaScript while others need to be delayed until the HTML is processing.
+</p>
+
+<script>
+output = ''; /* start the variable */
+output += '<p>';
+output += 'One of the most useful things that can be done as a page loads is to build it using information obtained immediately from the user. ';
+output += 'We can >prompt( )</span> the user for their name <em>before</em> the page is done loading and then use it in building content on the webpage using >document.write( )</span> function.';
+output += 'Perhaps, the single most important things to remember when using this the >document.write( )</span> function is that if you attempt to use it <em>after</em> the load is done building, it will try to start to rebuild a page from scratch, unloading pretty much everything else that one might have wanted to keep in the viewport.';
+output += 'This is generally behavior that one will not want, but then again, one person&apos;s bug could be another person&apos;s feature.';
+output += '</p>';
+document.write(output);
+/* end script */
+</script>
+
+
+</section>
+
+
+
+<section>
+<h2> Validating</span> JavaScript/ECMA </h2>
+
+<p>
+Yeah, good luck with that. The W3.org website does not have such direct validation tools for JavaScript/ECMA/DOM code. There are some online validators that mostly work, but one should take control of the situation by form very good habits about building code slowly and testing it frequently, keeping some kind of version history for changes in case something critically breaks, and not making the same mistakes over and over again. In fact, keeping an electronically-searchable journal of JavaScript 
+</p>
+
+</section>
+
+
+
+<section>
+<h2> This Week's Assignment(s): </h2>
+
+<ol>
+<li>
+Individual Built-It Task (iBIT): Build a small script that will ask the user for their name. Then, addressing them using that name, ask them to set a (bogus) password. Next, in a new pop-up window, have them re-type that password. Finally, alert to them a "Thank You" message.
+</li>
+<li>
+Group Built-It Task (gBIT): Rebuild the content of just this exact section (use a >&lt;section&gt;</span> element as a container), but do so using JavaScript instead of HTML. Apply the stylesheet for this page to it. Hint: peek behind this code to see not only which elements are being bui;t by script, <em>but also</em> how to get non-funcitonal straight-apostrophes >&apos;</span>, double-straight-quotes >&quot;</span> and angle-brackets >&lt;</span> >&gt;</span>.
+</li>
+<li>
+Individual Reaction Response (iRR): Discuss whether you think that the document.write( ) function can be used to build styles. Think about where the code can be placed and how to get the browser to see it and run it. Where might it not work, and why? (Extending deeply: Look into the src='d JavaScript to see function build( ). How and why does this function even exist?)
+</li>
+</ol>
+
+
+</section>
+
+<footer>
+ <script>
+    buildFooter( );
+ </script>
+</footer>
+
+</body>
+</html>

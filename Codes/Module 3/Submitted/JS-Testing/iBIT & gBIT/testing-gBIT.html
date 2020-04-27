@@ -1,0 +1,73 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  
+  <!-- REQUIRED THREE ELEMENTS BELOW -->
+  <title id="theTitle"> </title>
+  <link href="standardLesson.css" rel="stylesheet" />
+  <script src="gBIT.js"> </script>
+  <!-- REQUIRED THREE ELEMENTS ABOVE -->
+ 
+</head>
+<body>
+
+<header> 
+ <script>
+    buildHeader( );
+ </script>
+</header>
+
+<nav>
+ <script>
+    buildNavigationMenu( );
+ </script>
+<div id="tableOfContents"> </div> <!-- TO BE CONSTRUCTED BY END DOM SCRIPT -->
+</nav> 
+
+<h3> Group Built-It Task (gBIT): </h3>
+
+<p>
+    Build a small script that will receive from a user the three coefficients 
+    (a,b,c) from a quadratic form (ax^2 + bx + c = 0), and then report to the user the axes of symmetry
+    x =  b/(2a) and the approximate values of the roots (note: you will likely need to use Math.sqrt( ); 
+    functions to calculate the roots x = (–b ±√(b^2–4ac)) / (2a). For an extra challenge, build this so 
+    that the information is written into the body of a document that loads into the browser (as opposed 
+    to merely alerting it in pop-up windows).
+</p>
+
+<p>
+<button class="sample" onclick="
+    /*Three coeffiecents*/
+    a = parseFloat(prompt('Enter a:')); 
+    b = parseFloat(prompt('Enter b:')); 
+    c = parseFloat(prompt('Enter c:')); 
+
+    equation = a + 'x^2 + ' + b + 'x + ' + c + ' = 0'; 
+    alert('The equation entered is ' + equation);
+
+    /*Axis of symmetry*/
+    x = b/(2*a);
+    alert('The axis of symmetry is ' + x); 
+
+    /*Roots*/
+    /* x = (–b ±√(b^2–4ac)) / (2a) */
+    y = (-b) + Math.sqrt(Math.pow(b, 2) - (4*a*c)) / (2*a);
+    z = (-b) - Math.sqrt(Math.pow(b, 2) - (4*a*c)) / (2*a);
+
+    alert('The roots of ' + equation + ' are x = ' + y + ' and x = ' + z); ">
+    
+    Test out this script now.</button>
+</p>
+
+
+</section>
+
+<footer>
+ <script>
+    buildFooter( );
+ </script>
+</footer>
+
+</body>
+</html>

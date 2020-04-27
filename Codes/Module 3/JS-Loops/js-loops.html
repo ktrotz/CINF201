@@ -1,0 +1,656 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  
+  <!-- REQUIRED THREE ELEMENTS BELOW -->
+  <title id="theTitle"> X </title>
+  <link href="standardLesson.css" rel="stylesheet" />
+  <script src="standardLesson.js"> </script>
+  <!-- REQUIRED THREE ELEMENTS ABOVE -->
+ 
+</head>
+<body>
+
+<header> 
+ <script>
+    buildHeader( );
+ </script>
+</header>
+
+<nav>
+ <script>
+    buildNavigationMenu( );
+ </script>
+<div id="tableOfContents"> </div> <!-- TO BE CONSTRUCTED BY END DOM SCRIPT -->
+</nav> 
+
+<section>
+<h2> Introduction to <span class="highlight">Loops</span> </h2>
+
+<p>
+A <em>loop</em> is basically a way to have JavaScript/ECMA repeat a command. The simplest loops is where the same exact thing is done a pre-specified number of times.
+</p>
+
+<pre class="codeblock highlight">
+message = 'This is message #';
+
+for ( x = 1; x &lt;= 5; x++ )
+ {
+    alert( message + x );
+
+ } // end for x
+</pre>
+
+<p>
+<button class="sample" onclick="message = 'This is message #'; for ( x = 1; x <= 5; x++ ) {  alert( message + x ); } ">Test out this script now.</button>
+</p>
+
+</section>
+
+
+
+<section>
+
+<h2> The Anatomy of a <span class="highlight">Standard FOR</span> loop. </h2>
+
+<p>
+Let's examine the anatomy of this example. The keyword <span class="code highlight">for(&nbsp;)&nbsp;{&nbsp;}</span> sets up loop. Inside of the parentheses, there are three components that (hopefully) control the loop, and inside of the curly-braces is the repeated code. Those three components are:
+</p>
+
+<ol>
+ <li> 
+   <span class="code highlight">x = 1;</span><br /> 
+   This is the usually called the <em>initialization</em>. It is where the <em>control variable</em> is set to its initial value. </li>
+ <li> 
+   <span class="code highlight">x &lt;= 5;</span><br />
+   This is the usually called the <em>continuance condition</em>. After each time that the block of code runs, this condition is checked to see if it is true. If it is true, the block of code runs again; If it is false, the loop is done, and the JavaScript/ECMA processor will move forward with any code beyond the curly-braces. <span class="red">It is very important to plan ahead to make sure that you do NOT get stuck in the loop</span>.
+ </li>
+ <li>
+   <span class="code highlight">x++</span><br />
+   This is usually called the <em>counter increment</em>. At the end of each iteration of the code in the curly-braces, this command is issued. (Note: It is just as possible to use this for a counter decrement <span class="code higlhight">x--</span> just as easily, although the continuance condition should properly modified.)
+ </li>
+</ol>
+
+<p>
+Note: the anatomy of the standard FOR loop can be <q>abused</q>. For example:
+</p>
+
+<pre class="codeblock highlight">
+message = 'This is message #';
+
+for ( x = 0; x &lt; 5; alert( message + x ) )
+ {
+    x++;
+
+ } // end for x
+</pre>
+
+<p>
+<button class="sample" onclick="message = 'This is message #'; for ( x = 0; x < 5; alert( message + x ) ) { x++; }">Test out this script now.</button>
+</p>
+
+<p>
+This done exactly what the well-formatted example at the top does, but it does it <em>differently</em>. The visible result looks exactly the same, but technically the value of <span class="code highlight">x</span> is increased <em>before</em> the <span class="code highlight">alert(&nbsp;)</span> functions get called. To compensate for this, we shifted down by one the initial value of <span class="code highlight">x = 0</span> as well as the escape condition (now strictly less than 5).
+</p>
+
+<p>
+Technically, there is nothing wrong with writing the code this way as far as the machines are concerned, but it is very much not in alignment with human-readability. That is, the human have expectation about how to <q>properly</q> format the standard FOR loop. The <q>increment</q> is actually a desired <span class="code highlight">alert( )</span> command whereas the block of code contains the increment.
+</p>
+
+<p>
+If you've ever wondered why validators for JavaScript/ECMA are not as formal or robust as the ones that the W3.org puts out for HTML and for CSS, this would be why. Furthermore, we haven't yet seen code where one gets stuck in a loop.
+</p>
+
+<p>
+Here's another take on the FOR loop in which each of the control components exist outside of the normal (read: expected) locations.
+</p>
+
+<pre class="codeblock highlight">
+message = 'This is message #';
+x = 1; // *************** FUNCTIONS AS THE INITIALIZATION **********
+
+for ( ; ; )
+ {
+    alert( message + x );
+
+    x++; // ************* FUNCTIONS AS THE INCREMENT ***************
+    if ( x > 5 ) // ***** FUNCTIONS AS THE ESCAPE CONDITION ********
+     { break; }
+ } // end for x
+</pre>
+
+<p>
+<button class="sample" onclick="message = 'This is message #'; x = 1; for ( ; ; ) { alert( message + x ); x++; if ( x > 5 ) { break; } }">Test out this script now.</button>
+</p>
+
+<p>
+While each of these examples work seemlessly, the <em class="darkred bold">best practices</em> are to take advantage of placing all of the loops control together so that they are be diagnosed quickly in the event that the loop is not working (whether as planned or at all).
+</p>
+
+</section>
+
+
+
+
+
+<section>
+
+<h2> The Anatomy of a <span class="highlight">FOR&ndash;IN</span> Loop </h2>
+
+<p>
+The whole reason that arrays and objects were shown before loops was so that they could be showcased now. Sometimes we don't know how many elements are in an array or fields in an object. 
+</p>
+
+<pre class="codeblock highlight">
+six = { name: 'John Doe', 
+        zipcode: 12222, 
+        dob: new Date(1989,08,29)
+      };
+
+myList = [ NaN, 1, 'two', 3, [4.0,4.1,4.2], 
+           ['five A','five B'], six 
+         ];
+
+for ( x in myList )
+ {
+   alert( 'index: ' + x + '\nvalue at index: ' + myList[x] );
+
+ } // end for myList
+</pre>
+
+<p>
+<button class="sample" onclick="six = { name: 'John Doe', zipcode: 12222, dob: new Date(1989,08,29) }; myList = [ NaN, 1, 'two', 3, [4.0,4.1,4.2], ['five A','five B'], six ]; for ( x in myList ) { alert( 'index: ' + x + '\nvalue at index: ' + myList[x] ); } ">Test out this script now.</button>
+</p>
+
+<p>
+In this example, the list <span class="code highlight">myList</span> has seven elements (some of which have their own structures). The FOR-IN loop will automatically count through the indices of the array (<em>without</em> the need for <span class="code highlight">.length</span>!) and this can be used to access those elements by the indices. Take note that the arrays will report a string of their elements ocnatenated, and with any floating-point decimal that can convert to an integer shown as an integer. Furthermore, the object <span class="code highlight">six</span> simply reports <span class="code highlight">object Object</span> without getting into its contents. 
+</p>
+
+<p>
+So, what needs to be different with the FOR-IN loop applied to an <em>object</em>?
+</p>
+
+<pre class="codeblock highlight">
+myObject = { name: 'John Doe', 
+             zipcode: 12222, 
+             dob: new Date(1989,08,29)
+           };
+
+for ( x in myObject )
+ {
+   alert( 'field name: ' + x + '\nfield value: ' + myObject[x] );
+
+ } // end for myObject
+</pre>
+
+<p>
+<button class="sample" onclick="myObject = { name: 'John Doe', zipcode: 12222, dob: new Date(1989,08,29) }; for ( x in myObject ) { alert( 'field name: ' + x + '\nfield value: ' + myObject[x] ); } ">Test out this script now.</button>
+</p>
+
+<p>
+Take note that the iteration through the object is normally done in the order in which its <em>keys</em> (fields and methods) are defined.
+</p>
+
+<p>
+Even though one might normally assume that <span class="code highlight">myObject.x</span> would work (for example, in building a <span class="code highlight">myObject.name</span>), <em>it does not</em>! Instead, one must pretend that the object is an array in using the square-bracket notation <span class="code highlight">myObject[x]</span> to reference the information that is being stored in each key. This works because <span class="code highlight">typeof(x)</span> is a <span class="code highlight">string</span> and because the keys of an object can be accessed via square-brackets using the string literals. That is, <span class="code highlight">myObject['name']</span> can always reference <span class="code highlight">myObject.name</span> appropriately. Technically speaking, <span class="code highlight">myObject.x</span> would be <span class="code highlight">myObject['x']</span>, which our object does not have as a key. Variables will work inside of square-brackets, but not as a component of the dot operator.
+</p>
+
+<p>
+Some technical stuff that could be very important if you go beyond JavaScript/ECMA basics:
+<p>
+
+<ol>
+ <li>
+   Objects can have associated fields (like simple variables) or methods (like functions of the object). Both of these are keys. Both methods and fields will be iterated through. This might not be a desired effect.
+ </li>
+ <li>
+   Take special note that one has to be considerably more careful iterating through the <em>keys</em> of an <em>object</em>. If a key has been insolated with Symbol(&nbsp;), it ceases to be a key of the object and will no longer be a part of the iteration.
+ </li>
+</p>
+
+</section>
+
+
+<section>
+
+<h2> Anatomy of a <span class="highlight">WHILE</span> Loop (and a <span class="highlight">DO-WHILE</span> Loop) </h2>
+
+<p>
+Sometimes, the repetition is condition-based as opposed to being based on a preconceived iteration (that is: counters, arrays, and objects). This would be when a <span class="code highlight">while</span> loop is used.
+</p>
+
+<p>
+For example: what if even we didn't know the magic number that would break us out of this loop? It will one of the following integers: 1, 2, 3, 4, 5. But it will be different each time that we test it.
+</p>
+
+<pre class="codeblock highlight">
+target = Math.floor((Math.random() * 5) + 1);
+guess = parseInt( prompt( 'Guess an integer from 1 to 5' ));
+
+while ( guess != target )
+ {
+   guess = parseInt( prompt( 'Guess an integer from 1 to 5' ));
+ } // end while
+
+alert('Congratulations. The number was ' + guess + '.');
+</pre>
+
+<p>
+<button class="sample" onclick="target = Math.floor((Math.random() * 5) + 1); guess = parseInt( prompt( 'Guess an integer from 1 to 5' )); while ( guess != target ) { guess = parseInt( prompt( 'Guess an integer from 1 to 5' )); } alert('Congratulations. The number was ' + guess  + '.');">Test out this script now.</button>
+</p>
+
+<p>
+The <span class="code highlight">Math.random(&nbsp;)</span> function will generate a random-enough decimal between 0 (inclusive) and 1 (exclusive). One uses a scale factor (multiplier) and offset (addition) to change the range appropraitely (to "from 1 to 5"); Then, one uses the <span class="code highlight">Math.floor(&nbsp;)</span> function to force rounding down in all cases. 
+</p>
+
+<p>
+Also: take notice that in this example, the exact same command is given <em>both</em> before the <span class="code highlight">while(&nbsp;)&nbsp;{&nbsp;}</span> structure <em>and</em> inside of it. Whenever this is the case, one can force the block of repeated code to run at least once <em>before</em> the escape condition is checked by using the <span class="code highlight">do&nbsp;{&nbsp;}&nbsp;while(&nbsp;);</span> structure instead. It postpones checking the conditional until the end of the repetition. Using the <span class="code highlight">while(&nbsp;)&nbsp;{&nbsp;}</span> structure, the repetition block might not ever be executed.
+<p>
+
+<pre class="codeblock highlight">
+target = Math.floor((Math.random() * 5) + 1);
+
+do {
+      guess = parseInt( prompt( 'Guess an integer from 1 to 5' ));
+   } 
+while ( guess != target );
+
+alert('Congratulations. The number was ' + guess + '.');
+</pre>
+
+<p>
+<button class="sample" onclick="target = Math.floor((Math.random() * 5) + 1); do { guess = parseInt( prompt( 'Guess an integer from 1 to 5' )); } while ( guess != target ); alert('Congratulations. The number was ' + guess + '.');">Test out this script now.</button>
+</p>
+
+<p>
+Keep in mind that the condition is technically a subroutine that returns a Boolean value to the repetition structure. Sometimes, one will design such a loop that takes advantage of this fact. For example:
+</p>
+
+<pre class="codeblock highlight">
+pwdOnFile = 'qazwsxedc'; 
+
+// VERY BAD FORM TO STORE PASSWORDS IN RAW TEXT
+// ALSO: VERY BAD PASSWORD because 
+// it is the first three columns of a QWERTY keyboard.
+
+pwdAttempts = 0;
+do {
+     pwdAttempts++;
+     pwdTyped = prompt( 'Enter your password: ' );
+
+} while ( pwdTyped != pwdOnFile && pwdAttempts &lt; 5 );
+
+if ( pwdTyped == pwdOnFile ) {
+  alert('Now logging in...'); // BUT NOT REALLY
+
+} // end if (password worked!)
+
+else { 
+  alert('Too many failed password attempts.');
+
+} // end else (password failed!)
+</pre>
+
+<p>
+<button class="sample" onclick="pwdOnFile = 'qazwsxedc'; pwdAttempts = 0; do { pwdAttempts++; alert(pwdAttempts); pwdTyped = prompt( 'Enter your password: ' ); } while ( pwdTyped != pwdOnFile && pwdAttempts < 5 ); if ( pwdTyped == pwdOnFile ) { alert('Now logging in...'); } else { alert('Too many failed password attempts.'); }
+">Test out this script now.</button>
+</p>
+
+<p>
+Notice that there are two control structures working together. There is the counter variable <span class="code highlight">pwdAttempts</span> as well as the actual <span class="code highlight">pwdTyped</span> user input. Either of these control structures will terminate the loop. Then, the rest of the code excutes depending on whether the password was correctly typed in by the user or not.
+</p>
+
+
+</section>
+
+
+
+<section>
+
+<h2> Case Study: Using Loops to Build a BINGO Board. </h2>
+
+<br />
+
+<script>
+
+// NOTE: build() is an externally-defined shortcut for document.write()
+// NOTE: element() is an externally-defined shortcut for document.getElementById()
+
+
+// SET UP GLOBAL VARIABLES FOR LATER USE
+columnHeader = ['B','I','N','G','O'];
+cells = [[],[],[],[],[]];
+for ( x in cells )
+ {
+   for ( counter = 1; counter <= 15; counter++ )
+    {
+       // POPULATE THE AVAILABLE BINGO NUMBERS BY COLUMN
+       cells[x].push( (15 * x) + counter );
+
+    } // end for counter
+ } // end for in cells
+
+
+
+ // FUNCTION TO SHUFFLE BINGO NUMBERS BY COLUMN
+ function shuffle(array) {
+   var currentIndex = array.length, 
+       tempValue, 
+       randomIndex;
+
+   // WHILE UNSHUFFLED ELEMENTS REMAIN
+   while ( 0!= currentIndex ) {
+
+      randomIndex = Math.floor(Math.random() * currentIndex);
+      currentIndex--;
+
+      tempValue = array[currentIndex];
+      array[currentIndex] = array[randomIndex];
+      array[randomIndex] = tempValue;
+
+   } // end while
+
+   return array;
+} // end FUNCTION shuffle
+
+for ( x in cells )
+ {
+   cells[x] = shuffle(cells[x]);
+   // alert(cells[x]);
+ }
+
+
+// ACTUALLY BUILD THE TABLE
+build('<table class="firstChildCenter secondChildCenter thirdChildCenter fourthChildCenter fifthChildCenter">');
+  build('<tr>');
+  for ( columns = 0; columns < 5; columns++ )
+   {
+     build('<th id="column' + columnHeader + '">');
+     build(columnHeader[columns]);
+     build('</th>');
+   }
+  build('</tr>');
+  for ( rows = 0; rows < 5; rows++ )
+   {
+     build('<tr>');
+     for ( columns = 0; columns < 5; columns++ )
+      {
+        // HAVE GOOD ID= VALUES FOR LATER USE
+        idValue = 'r' + rows + 'c' + columns;
+        build('<td id="' + idValue + '">');
+        build(cells[columns][rows]);
+        build('</td>');
+      }
+     build('</tr>');
+   } // end for rows
+build('</table>');
+
+// FREE CENTER
+element('r2c2').innerHTML = '<span style="font-size: 50%; vertical-align:middle;"> FREE </span>';
+
+
+// ACTUALLY BUILD THE FUNCTION THAT SHUFFLES AFTER-THE-FACT
+// HEAVILY USES DOM TO CHANGE .innerHTML
+function shuffleCard( array )
+ {
+   for ( x in cells )
+    {
+      cells[x] = shuffle(cells[x]);
+      // alert(cells[x]);
+    }
+
+   for ( rows = 0; rows < 5; rows++ )
+    {
+       for ( columns = 0; columns < 5; columns++ )
+        {
+           idValue = 'r' + rows + 'c' + columns;
+           element(idValue).innerHTML = cells[columns][rows];
+        } // end for columns
+    } // end for rows
+
+   // FREE CENTER
+   element('r2c2').innerHTML = '<span style="font-size: 50%; vertical-align:middle;"> FREE </span>';
+   return;
+ } // end FUNCTION shuffleCard
+
+</script>
+
+<p>
+<button class="sample" onclick="shuffleCard(cells);">Test out this script now.</button>
+</p>
+
+<p>
+First, look at the set up:
+</p>
+
+<pre class="codeblock highlight" style="font-size: 80%;">
+// NOTE: build() is an externally-defined shortcut for document.write()
+// NOTE: element() is an externally-defined shortcut for document.getElementById()
+
+// SET UP GLOBAL VARIABLES FOR LATER USE
+columnHeader = ['B','I','N','G','O'];            // for the &lt;th&gt; elements
+cells = <b>[</b>  [], [], [], [], []  <b>]</b>;                // for each column of numbers
+
+<b>for</b> ( x in cells )
+ {
+   <b>for</b> ( counter = 1; counter &lt;= 15; counter++ )
+    {
+       // POPULATE THE AVAILABLE BINGO NUMBERS BY COLUMN
+       cells[x].<b>push</b>( (15 * x) + counter );
+
+    } // end for counter
+ } // end for in cells
+</pre> 
+
+<p>
+At this point, there nows exists an array <span class="code highlight">cells</span> that contains 5 arrays, each with its numbers in order (1&ndash;15, 16&ndash;30, 31&ndash;45, 46&ndash;60, 61&ndash;75). This needs to be shuffled.
+</p>
+
+<pre class="codeblock highlight" style="font-size: 80%;">
+ // FUNCTION TO SHUFFLE BINGO NUMBERS BY COLUMN
+ function <b>shuffle(</b>array<b>)</b> {
+   var currentIndex = array.length, 
+       tempValue, 
+       randomIndex;
+
+   // WHILE UNSHUFFLED ELEMENTS REMAIN
+   <b>while</b> ( 0!= currentIndex ) {
+
+      randomIndex = Math.floor(Math.random() * currentIndex);
+      currentIndex--;
+
+      tempValue = array[currentIndex];
+      array[currentIndex] = array[randomIndex];
+      array[randomIndex] = tempValue;
+
+   } // end while
+
+   return array;
+} // end FUNCTION shuffle
+
+// ACTUALLY APPLY THE SHUFFLE
+<b>for</b> ( x in cells )
+ {
+   cells[x] = shuffle(cells[x]);
+   // alert(cells[x]);
+ }
+</pre>
+
+
+<p>
+Building a function appears in the next lesson. However, the short explanation is that it is a ready-to-go, flexible piece of code. This function will shuffle the numbers in any array. After that function is built, one uses a loop for each of the 5 subarrays in <span class="code highlight">cells</span>.
+</p>
+
+<p>
+The function above defines three of its own variables (including assigning the value <span class="code highlight">array.length</span> to one of them. This assigned variable will also be used as a counter for the <span class="code highlight">while(&nbsp;)</span> loop, counting down from the last position to the first position. There are three consecutive lines of code that have three variables assigning values to each other. This has been carefully constructed to swap two values by having one extra space to temporarily hold some information. Finally, as a separate loop of its own, the five arrays, one by one, send themselves to the shuffle function, get shuffled, and are returned to be immediately assigned back in the arrays that they came from. In a way, the function itself behaves as an extra space to temporarily hold the information.
+</p>
+
+<pre class="codeblock highlight" style="font-size: 75%;">
+// ACTUALLY BUILD THE TABLE
+build('&lt;table class="<i>styleMe</i>"&gt;');
+  build('&lt;tr&gt;');
+  <b>for</b> ( columns = 0; columns < 5; columns++ )
+   {
+     build('&lt;th id="column' + columnHeader + '"&gt;');
+     build( columnHeader[columns] );                     // RECALL ['B','I','N','G','O']
+     build('&lt;/th&gt;');
+   }
+  build('&lt;/tr&gt;');
+  <b>for</b> ( rows = 0; rows &lt; 5; rows++ )
+   {
+     build('&lt;tr&gt;');
+     for ( columns = 0; columns &lt; 5; columns++ )
+      {
+        // HAVE GOOD ID= VALUES FOR LATER USE
+        idValue = 'r' + rows + 'c' + columns;
+
+        build('&lt;td id="' + idValue + '"&gt;');
+        build(cells[columns][rows]);                    // The already-shuffled values
+        build('&lt;/td&gt;');
+      }
+     build('&lt;/tr&gt;');
+   } // end for rows
+build('<&lt;table&gt;');
+
+// FREE CENTER
+element('r2c2')<b>.innerHTML</b> = '&lt;span style="font-size: 50%; vertical-align:middle;"&gt; FREE &lt;/span&gt;';
+</pre>
+
+<p>
+Don't forget that <span class="code highlight">build(<i>someHTML</i>);</span> is a coder-defined alias for <span class="code highlight">document.write(<i>someHTML</i>);</span> and that <span class="code highlight">element(<i>idValue</i>);</span> is a coder-defined alias for <span class="code highlight">document.getElementById(<i>idValue</i>);</span>
+</p>
+
+<p>
+The styles on the <span class="code highlight">&lt;table&gt;</span> are not important for this case study. Essentially, they align numbers to the centers of the columns. Much more importantly, the FOR loop inside of the FOR loop will go <span class="code highlight">&lt;td&gt;</span> by <span class="code highlight">&lt;td&gt;</span>, filling it with the already-shuffled values from the arrays inside of the arrays. As these <span class="code highlight">&lt;td&gt;</span> elements are bring built, one also uses the values of the rows and columns to build unique id= values for later use. They are 'r0c0', 'r0c1', 'r0c2', ..., 'r4c4'.
+</p>
+
+<p>
+Pay close attention to the relationship between nested loops, nested arrays, and levels of descendancy within the <span class="code highlight">&lt;table&gt;</span> element.
+</p>
+
+<p>
+At the very end of it all, whatever value was placed at the center ('r2c2'), the DOM assigns a new value (the string 'FREE' with the styles to shrink it using a wrapper <span class="code highlight">&lt;span&gt;</span> element.) 
+</p>
+
+<pre class="codeblock highlight" style="font-size: 75%;">
+// ACTUALLY BUILD THE FUNCTION THAT SHUFFLES AFTER-THE-FACT
+// HEAVILY USES DOM TO CHANGE .innerHTML
+function <b>shuffleCard(</b> array <b>)</b>
+ {
+   <b>for</b> ( x in cells )
+    {
+      cells[x] = shuffle(cells[x]);
+      // alert(cells[x]);
+    }
+
+   <b>for</b> ( rows = 0; rows &lt; 5; rows++ )
+    {
+       <b>for</b> ( columns = 0; columns &lt; 5; columns++ )
+        {
+           idValue = 'r' + rows + 'c' + columns;
+           element(idValue).innerHTML = cells[columns][rows];
+        } // end for columns
+    } // end for rows
+
+   // FREE CENTER
+   element('r2c2')<b>.innerHTML</b> = 
+      '&lt;span style="font-size: 50%; vertical-align:middle;"&gt; FREE &lt;/span&gt;';
+
+   return;
+ } // end FUNCTION shuffleCard
+</pre>
+
+<p>
+Finally, this is the post-build shuffler function. It is triggered by the button below the BINGO card. It contains a first loop that, one by one, shuffles (again) each of the column arrays. Then, a second loop, which has its own loop, iterates through the 25 <span class="code highlight">&lt;td&gt;</span> elements, using through well-formatted <span class="code highlight">id=</span> values. Again, one assigns the newly-shuffled values into these elements <span class="code highlight">&lt;td&gt;</span> using the <span class="code highlight">.innerHTML</span> from the Document Object Model. Finally, one reassigns 'FREE' to the center square (again).
+</p>
+
+
+</section>
+
+
+
+
+
+
+<section>
+<h2> This Week's Assignment(s): </h2>
+
+<ol>
+<li>
+Indiividiual  Built-It Task (iBIT): Make a flexible size multiplication table. Use <span class="code highlight">document.write(&nbsp;)</span> using nested <span class="code highlight">for&nbsp;(&nbsp;)&nbsp;{&nbsp;}</span> loops. The user gets to decide the size of the table (5-15). 
+</li>
+<li>
+Group Built-It Task: (gBIT): Design a webpage that has a 100&times;10 (i.e., 100 rows of 10) table that will highlight the prime numbers from 1 to 1000. Below is a description of how to succeed. Still, it is up to your group to successfully complete the task.
+  <ul>
+  <li>
+  Construct a table using a <span class="code highlight">for</span> in a <span class="code highlight">for</span> loop. Remember that this webpage has an analysis of a BINGO card, which is a 5&times;5 table. Model your table after one like that. Every cell of your table should have a uniquely determined identifer. Example: The number 614 should appear in row 61, column 4, with id="r61c4". The number 470 should appear in row 46, column 10, with id="r46c10". (Note: The modulus <span class="code highlight">%</span> operator is very helpful, but as the latter example shows, there is a special case for when the modulus equals 0. Your group will need to plan around this <em>feature</em>.)
+  </li>
+  <li>
+  The algorithm for identifying the primes will be modelled after the somehwat inefficient <a href="https://en.wikipedia.org/wiki/Sieve_of_Eratosthenes">Sieve of Eratosthenes</a>. That is, for every possible divisor (from 2 up to the square root of 1000 &approx; 31). Familiarize yourself with the algorithm. Deliberate how to implement a way to show which table element are prime or composite. (For the sake of this assignment, treat 1 as <em>not prime</em>.) Essentially, you will be doing something with a <span class="code highlight">for</span> loop in a <span class="code highlight">for</span> loop. That is, <em>for every possible divisor from 2 to 31, for every possible number to check from 1 to 1000, does the division work evenly?</em>
+  </li>
+  <li>
+  It is up to your group how to design for success here. Would it be better to have...
+    <ol>
+    <li> ... an array of elements numbered 0 to 1000 in which every element is the name of the style class that will be used when the table is built? </li>
+    <li> ... the table built ahead of time then swap out the default style class using <span class="code highlight">document.getElementById(<em>yourID</em>).className = '<em>composite</em>'? </li>
+    <li> ... some other way of designing this goal? </li>
+    </ol><br />
+  Your table will look something like this (but have 100 rows properly stylized):
+  <table>
+   <tr>
+    <td style="background-color: skyblue;"> 1 </td>
+    <td style="background-color: hotpink;"> 2 </td>
+    <td style="background-color: hotpink;"> 3 </td>
+    <td style="background-color: skyblue;"> 4 </td>
+    <td style="background-color: hotpink;"> 5 </td>
+    <td style="background-color: skyblue;"> 6 </td>
+    <td style="background-color: hotpink;"> 7 </td>
+    <td style="background-color: skyblue;"> 8 </td>
+    <td style="background-color: skyblue;"> 9 </td>
+    <td style="background-color: skyblue;"> 10 </td>
+   </tr>
+   <tr>
+    <td style="background-color: hotpink;"> 11 </td>
+    <td style="background-color: skyblue;"> 12 </td>
+    <td style="background-color: hotpink;"> 13 </td>
+    <td style="background-color: skyblue;"> 14 </td>
+    <td style="background-color: skyblue;"> 15 </td>
+    <td style="background-color: skyblue;"> 16 </td>
+    <td style="background-color: hotpink;"> 17 </td>
+    <td style="background-color: skyblue;"> 18 </td>
+    <td style="background-color: hotpink;"> 19 </td>
+    <td style="background-color: skyblue;"> 20 </td>
+   </tr>
+   <tr>
+    <td style="background-color: skyblue;"> 21 </td>
+    <td style="background-color: skyblue;"> 22 </td>
+    <td style="background-color: hotpink;"> 23 </td>
+    <td style="background-color: skyblue;"> 24 </td>
+    <td style="background-color: skyblue;"> 25 </td>
+    <td style="background-color: skyblue;"> 26 </td>
+    <td style="background-color: skyblue;"> 27 </td>
+    <td style="background-color: skyblue;"> 28 </td>
+    <td style="background-color: hotpink;"> 29 </td>
+    <td style="background-color: skyblue;"> 30 </td>
+   </tr>
+  </table>
+  </li>
+  </ul>
+</li>
+<li>
+Individual Reaction Response (iRR): Think upon the gBIT. What were your group's deliberations? What ideas were outright rejected? Why? What ideas were prioiritized over others? Why? 
+</li>
+</ol>
+
+
+</section>
+
+<footer>
+ <script>
+    buildFooter( );
+ </script>
+</footer>
+
+</body>
+</html>

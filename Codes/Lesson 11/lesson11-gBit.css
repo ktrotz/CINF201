@@ -1,0 +1,18 @@
+:root{
+	--scale-factor: 0.8; /* */
+	--block-size: calc(10vw * var(--scale-factor)); /* */
+}
+
+body {
+	padding-left: calc(var(--block-size) / 2); /* */
+	padding-top: calc(var(--block-size) / 2); /* */
+}
+
+div {
+	width: var(--block-size); /* */
+	height: var(--block-size); /* */
+	border: solid calc(var(--block-size) / 20) black; /* */
+	border-radius: calc(var(--block-size) / 10); /* */
+	background-color: skyblue; /* */
+	display: inline-block; /* ALLOWS FLOW LEFT-TO-RIGHT ****************** */
+}

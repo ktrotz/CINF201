@@ -1,0 +1,73 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <title> Lesson 11 </title>
+  <link rel="stylesheet" href="lesson11-gBit.css" />
+  <script>
+  function mouseOver() {
+    var second = document.getElementById("r2c3").style.backgroundColor ="grey"
+    var third = document.getElementById("r3c3").style.backgroundColor ="red"
+    var fourth = document.getElementById("r4c3").style.backgroundColor ="grey"
+    var middleSecond = document.getElementById("r3c2").style.backgroundColor ="grey"
+    var middleFourth = document.getElementById("r3c4").style.backgroundColor ="grey"
+  }
+  function mouseOut() {
+    var second = document.getElementById("r2c3").style.backgroundColor ="lightblue"
+    var third = document.getElementById("r3c3").style.backgroundColor ="lightblue"
+    var fourth = document.getElementById("r4c3").style.backgroundColor ="lightblue"
+    var middleSecond = document.getElementById("r3c2").style.backgroundColor ="lightblue"
+    var middleFourth = document.getElementById("r3c4").style.backgroundColor ="lightblue"
+  }
+
+  function mouseOver2() {
+    var second = document.getElementById("r1c5").style.backgroundColor ="grey"
+    var third = document.getElementById("r2c5").style.backgroundColor ="red"
+    var fourth = document.getElementById("r3c5").style.backgroundColor ="grey"
+    var middleSecond = document.getElementById("r2c4").style.backgroundColor ="grey"
+  }
+
+  function mouseOut2() {
+    var second = document.getElementById("r1c5").style.backgroundColor ="lightblue"
+    var third = document.getElementById("r2c5").style.backgroundColor ="lightblue"
+    var fourth = document.getElementById("r3c5").style.backgroundColor ="lightblue"
+    var middleSecond = document.getElementById("r2c4").style.backgroundColor ="lightblue"
+  }
+  </script>
+</head>
+<body> 
+
+<!-- BUILD THE CELLS -->
+<div id="r1c1"> </div>
+<div id="r1c2"> </div>
+<div id="r1c3"> </div>
+<div id="r1c4"> </div>
+<div id="r1c5"> </div>
+<br />
+<div id="r2c1"> </div>
+<div id="r2c2"> </div>
+<div id="r2c3"> </div>
+<div id="r2c4"> </div>
+<div id="r2c5" onmousemove=mouseOver2() onmouseout=mouseOut2()> </div>
+<br />
+<div id="r3c1"> </div>
+<div id="r3c2" > </div>
+<div id="r3c3" onmousemove=mouseOver() onmouseout=mouseOut()> </div>
+<div id="r3c4"> </div>
+<div id="r3c5"> </div>
+<br />
+<div id="r4c1"> </div>
+<div id="r4c2"> </div>
+<div id="r4c3"> </div>
+<div id="r4c4"> </div>
+<div id="r4c5"> </div>
+<br />
+<div id="r5c1"> </div>
+<div id="r5c2"> </div>
+<div id="r5c3"> </div>
+<div id="r5c4"> </div>
+<div id="r5c5"> </div>
+<br />
+
+</body>
+</html>  

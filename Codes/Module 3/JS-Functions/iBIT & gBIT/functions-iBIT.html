@@ -1,0 +1,56 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  
+  <!-- REQUIRED THREE ELEMENTS BELOW -->
+  <title id="functions-iBIT"> </title>
+  <link href="standardLesson.css" rel="stylesheet" />
+  <script src="standardLesson.js"> </script>
+  <!-- REQUIRED THREE ELEMENTS ABOVE -->
+ 
+</head>
+<body>
+
+<section>
+<h2> Individual Built-It Task (iBIT): </h2>
+
+
+
+ Build a library of functions that you can put into an external JavaScript file. Your library should inlcude the following:
+  <ul>
+  <li> A <span class="code highlight">build(&nbsp;)</span> function that is a shorthand for <span class="code highlight">document.write(&nbsp;)</span>. </li>
+  <li> An <span class="code highlight">element(&nbsp;)</span> shorthand function for <span class="code highlight">document.getElementById(&nbsp;)</span>. </li>
+  <li> Any other functions that you'd like to include. </li>
+  </ul>
+
+</section>
+
+
+<h4>Fahrenheit to Celsius Converter:</h4>
+
+<p id="convert"></p>
+
+<script>
+
+    function build(i) {
+        return document.write(i);
+    }   
+    
+    function element(i) {
+        return document.getElementById(i);
+    }
+    
+    function toCelsius(f) {
+        build("The number above is 77F in Celsius");  
+        return (5/9) * (f-32);     
+    }  
+
+    element("convert").innerHTML = toCelsius(77);
+   
+
+</script>
+
+
+</body>
+</html>

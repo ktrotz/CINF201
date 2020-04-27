@@ -1,0 +1,137 @@
+<html lang="en" class="gr__blackboard_albany_edu"><head>
+ <meta charset="utf-8">
+ <title> Contact Information </title>
+ <link href="lesson7.css" rel="stylesheet">
+</head>
+<body data-gr-c-s-loaded="true">
+
+<!-- HEADER: where the banner for the whole site goes -->
+<header>
+<img src="lesson8-banner.png" alt="Hyperbolic Math Contests">
+</header>
+
+<!-- NAV: where all the site navigation links go -->
+<nav>
+<a href="lesson7-page1.html">home</a>
+<a href="lesson7-page2.html">current</a>
+<a href="lesson7-page3.html">past</a>
+<a href="mailto:us@hypermathcontents.org">contact</a>
+</nav>
+
+<!-- MAIN: where the content specific to this page goes -->
+<main>
+
+<h1> Last month's Math Contest Solutions! </h1>
+
+<p>
+Pascal's Triangle starts with <br>
+Row 0 contains 1 entry: &nbsp; 1.<br>
+Row 1 contains 2 entries: 1 1.<br>
+Row 2 contains 3 entries: 1 2 1.<br>
+Row 3 contains 4 entries: 1 3 3 1.<br>
+Row 4 contains 5 entries: 1 4 6 4 1.<br>
+Row 5 contains 6 entries: 1 5 10 10 5 1.<br>
+Row 6 contains 7 entries: 1 6 15 20 15 6 1.<br>
+This pattern continues with every n<sup>th</sup> entry equal to the sum of the (n–1)<sup>th</sup> and n<sup>th</sup> entries from the previous row. If that goes out of bounds, assume that that entry equals 0. (Example: the 1<sup>st</sup> 10 is located at Row 5, Position 2. Add Row 4, Position 1 (4) to Row 4, Position 2 (6) to get 4+6=10. Take note that counting positions always starts at 0.)
+</p>
+
+<ol>
+
+<li> <!-- Extra space in List -->
+ <ul>
+    <li> How many entries in Rows 0 through 15 combined are even? </li>
+	<li> Take notice of the patterns of odds and evens. Recall that how odds and evens add. Certain rows have only odd entries. They are positioned at Rows 0, 1, 3, 7, 15, ... That is every Row that is one less than a power-of-two! And Rows 2, 4, 8, 16, ... are always all even except for their edges 1s. In fact, if one were to colorize odds differently than evens, it would generate the top of an infinite fractal image of Sierpinski's Gasket! Knowing this information, one can focus on triangles of even entries. Starting on Row 2, there is one of size 1. Starting on Row 4, there is one with 6 evens. Starting on Row 6, there are two of size 1 (and the central even was part of the size 6 started on Row 4). It turns out that the fractal nature can be exploited nicely here. Starting in Row 8, there will be an even triangle with 28 entries (7+6+5+4+3+2+1). But, next to them, in Rows 9 through 15, there will be a two copies (one left, one right) of the set of even triangles above Row 7. So, top + lower-left + lower-right + the big-one = 9 + 9 + 9 + 28 = 55. We could even extend this notion to answer how many entries in Rows 0 through 31 combined are even? It will be 55 + 55 + 55 + 105 = 270. And through 63? 1306. (Why?) </li>
+ </ul>
+</li>
+
+<li>
+ <ul>
+	<li> How many entries in Rows 0 through 15 combined are divisible by 4? </li>
+	<li> This is essentially a similar situation, but with slightly trickier highlighting. The 1-areas now disappear. The 6-areas are now only 3-areas. The 28-area is three 6-areas plus a central 1-area. The same [3(last) + newCenter] pattern from the past problem will emerge. Above Row 8 has three 1-areas that are disivible evenly by 4. Then, starting at Row 8, there are three 6-areas with a central 1-area. To the sides of them, from Row 8 to Row 15, are another three 1-areas. So, top + lower-left + lower-right + the big-hole-with-holes = 3 + 3 + 3 + 19 = 31. Extending to Row 31, we get 31 + 31 + 31 + [3(28)+1(6)+3(1)] = 186. <br>
+	<span class="extraInfo">To help visualize the previous two explanations, visit <a href="https://www.maa.org/sites/default/files/images/upload_library/4/vol3/pascalpatterns/pat1d.htm" target="_blank">the MAA article</a> on this. </span></li>
+ </ul>
+</li>
+
+<li> 
+ <ul>
+	<li> In which row would there be three consecutive entries that are in a 3:4:5 ratio? </li>
+	<li> It could be daunting to view the mutliples of 3, of 4, and of 5 looking for adjacencies that happen to work. Ultimately, this is what what will be going on, but instead of visualize it geometrically, we will model it algebraically, for starters. In your research on Pascal's Triangle, you should have encountered that the entries correspond to probability combinations. In fact, this is why we started all counting from 0. Row N, Position R equals the number of group of R elements that can be chosen from N elements, or <span class="noBreak"><sub>n</sub>C<sub>r</sub></span>. The formula for calculating any <span class="noBreak"><sub>n</sub>C<sub>r</sub></span> is <b class="noBreak">n! ÷ r! ÷ (n-r)!</b> where <span class="noBreak">h! = h(h–1)(h–2)...(3)(2)(1)</span>. Now, we need to examine the ratio of consecutive elements, <span class="noBreak"><sub>n</sub>C<sub>r</sub></span> and <span class="noBreak"><sub>n</sub>C<sub>r+1</sub></span>. Because we will need to do this twice (3:4, then 4:5), let's just solve for a:b: <b class="noBreak">b × <sub>n</sub>C<sub>r</sub> = a × <sub>n</sub>C<sub>r+1</sub></b>; or, <b class="noBreak">b × n! ÷ r! ÷ (n-r)!</b> <b>=</b> <b class="noBreak"> a × n! ÷ (r+1)! ÷ (n-r-1)!</b> Now, realize that you can factor out the first factor from a factorial by reducing the number of the factorial by one. That is, <span class="noBreak">h! = h<i>(h–1)(h–2)...(3)(2)(1)</i></span> = <span class="noBreak">h × (h-1)!</span>. So, our equation now becomes: <b class="noBreak">b × n! ÷ r! ÷ (n-r) ÷ (n-r-1)!</b> <b>=</b> <b class="noBreak"> a × n! ÷ (r+1) ÷ r! ÷ (n-r-1)!</b>. Now, eliminate all matching factorials (via multiplication or division) to get <b class="noBreak">b ÷ (n-r) </b> <b>=</b> <b class="noBreak"> a ÷ (r+1)</b>; or <b class="noBreak">b(r+1) = a(n-r)</b>. All we need to do now is find values for the r (for each a:b) that yield a positive integer for n. Rearranging, we get <b class="noBreak">((a+b)r+b)÷a = n ∈ ℤ<sup>+</sup></b>. For 3:4, n will be one-less-than-a-multiple-of-7, and for 4:5, n will be one-less-than-a-multiple-of-9. So, because 7 and 9 share no common factors other than 1, check numbers that are one-less-than-(7×9). Sure enough, n = 62 yields a 3:4 ratio at positions 26 and 27 as well as a 4:5 ratio at positions 27 and 28. They are adjacent, so that solves the problem without having to extend out Pascal's Triangle to discover that <span class="noBreak"> 209769429934732479 : 2796925732463099792 : 349615716557887465</span> happen to be the only 3:4:5 ration in the whole triangle. (And, of course, surely you have your 69923143311577493 times table memorized!)<br>
+    <span class="extraInfo">Note: this problem appeared in competition in the <a href="https://www.maa.org/math-competitions/american-invitational-mathematics-examination-aime" target="_blank">1992 AIME test</a></span>.</li>
+ </ul>
+</li>
+
+</ol>
+
+<table id="previous" class="withCaption">
+ <caption> Previous Months' Contests </caption>
+ <tbody><tr>
+  <th> </th>
+  <th> Jan </th>
+  <th> Feb </th>
+  <th> Mar </th>
+  <th> Apr </th>
+  <th> May </th>
+  <th> Jun </th>
+  <th> Jul </th>
+  <th> Aug </th>
+  <th> Sep </th>
+  <th> Oct </th>
+  <th> Nov </th>
+  <th> Dec </th>
+ </tr>
+ <tr>
+  <th> 2019 </th>
+  <td> <a href="2019-01.html"> go! </a> </td>
+  <td> </td>
+  <td> </td>
+  <td> </td>
+  <td> </td>
+  <td> </td>
+  <td> </td>
+  <td> </td>
+  <td> </td>
+  <td> </td>
+  <td> </td>
+  <td> </td>
+ </tr>
+ <tr>
+  <th> 2018 </th>
+  <td> <a href="2018-01.html"> go! </a> </td>
+  <td> <a href="2018-02.html"> go! </a> </td>
+  <td> <a href="2018-03.html"> go! </a> </td>
+  <td> <a href="2018-04.html"> go! </a> </td>
+  <td> <a href="2018-05.html"> go! </a> </td>
+  <td> <a href="2018-06.html"> go! </a> </td>
+  <td> <a href="2018-07.html"> go! </a> </td>
+  <td> <a href="2018-08.html"> go! </a> </td>
+  <td> <a href="2018-09.html"> go! </a> </td>
+  <td> <a href="2018-10.html"> go! </a> </td>
+  <td> <a href="2018-11.html"> go! </a> </td>
+  <td> <a href="2018-12.html"> go! </a> </td>
+ </tr>
+ <tr>
+  <th> 2017 </th>
+  <td> <a href="2017-01.html"> go! </a> </td>
+  <td> <a href="2017-02.html"> go! </a> </td>
+  <td> <a href="2017-03.html"> go! </a> </td>
+  <td> <a href="2017-04.html"> go! </a> </td>
+  <td> <a href="2017-05.html"> go! </a> </td>
+  <td> <a href="2017-06.html"> go! </a> </td>
+  <td> <a href="2017-07.html"> go! </a> </td>
+  <td> <a href="2017-08.html"> go! </a> </td>
+  <td> <a href="2017-09.html"> go! </a> </td>
+  <td> <a href="2017-10.html"> go! </a> </td>
+  <td> <a href="2017-11.html"> go! </a> </td>
+  <td> <a href="2017-12.html"> go! </a> </td>
+ </tr>
+</tbody></table>
+</main>
+
+<!-- FOOTER: where author/copyright/etc goes -->
+<footer>
+© <time datetime="2019" id="copyright">2019</time> – hypermath contests unlimited
+</footer>
+
+
+
+</body></html>

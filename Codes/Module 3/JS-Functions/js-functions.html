@@ -1,0 +1,625 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  
+  <!-- REQUIRED THREE ELEMENTS BELOW -->
+  <title id="theTitle"> </title>
+  <link href="standardLesson.css" rel="stylesheet" />
+  <script src="standardLesson.js"> </script>
+  <!-- REQUIRED THREE ELEMENTS ABOVE -->
+ 
+</head>
+<body>
+
+<header> 
+ <script>
+    buildHeader( );
+ </script>
+</header>
+
+<nav>
+ <script>
+    buildNavigationMenu( );
+ </script>
+<div id="tableOfContents"> </div> <!-- TO BE CONSTRUCTED BY END DOM SCRIPT -->
+</nav> 
+
+<section>
+<h2> An <span class="highlight">Introduction</span> to Functions </h2>
+
+<p>
+A function is a section on ready-to-use code. If can take strucutred information in, modify stored information, perform tasks, and even return one specific piece of information. More formally, a function is a special type of JavaScript/ECMA object, in that it can have properties and methods, and it can also be called and return a value.
+</p>
+
+<p>
+Every function that one builds for themselves has the following format:
+</p>
+
+<pre class="codeblock highlight">
+<b>function</b> functionName ( <em>parameters</em> )
+ {
+   /* some code */
+   <b>return</b> /* returnValue */;
+ }
+</pre>
+
+<p>
+The function name is whatever the programmer decides, following the rules for naming variables.
+</p>
+
+<p>
+The <em>parameters</em>, sometimes called <em>arguments</em>, are an ordered list of values being passed to the function for it to use. In the <em>function definition</em>, sometimes called the <em>function declaration</em>, the parameters are given variable names for use within the scope of the function.
+</p>
+
+<p>
+It is not required that a function return a value, but it can. In the following example of the 2-dimensional Pythagorean Theorem, it does.
+</p>
+
+<pre class="codeblock highlight">
+<b>function</b> hypotenuse ( <em>a</em>, <em>b</em> )
+ {
+   aSquared = a * a;
+   bSquared = b * b;
+   sumOfSquares = aSquared + bSquared;
+
+   <b>return</b> Math.sqrt( sumOfSquares );
+ }
+
+phraseStart = 'Enter the measure of ';
+phraseEnd = ' of the right triangle: ';
+leg1 = parseInt( prompt( phraseStart + 'one' + phraseEnd ));
+leg2 = parseInt( prompt( phraseStart + 'the other' + phraseEnd ));
+
+alert('The hypotenuse is approximately ' + <em>hypotenuse( leg1, leg2 )</em> );
+</pre>
+
+</section>
+
+<section>
+
+<h2> <span class="highlight">Scope:</span> Passing Information <span class="highlight">By Value</span> vs. <span class="highlight">By Reference</span> </h2>
+
+<p>
+At the top of the previous example, the function is defined to receive two arguments &ndash; <span class="code highlight">a</span> and <span class="code highlight">b</span>. These are copies of the information &ndash; <span class="code highlight">leg1</span> and <span class="code highlight">leg2</span> &ndash; that were passed to the function from the function call in the last line. It is important to remember that primitive values, such as numbers and strings, are <em>passed by value</em>, meaning that the variables outside of the function are not changed by the function, but that objects are <em>passed by reference</em> and can access and change those outside objects while inside of the function. See the example below:
+</p>
+
+<pre class="codeblock highlight">
+<b>function</b> changeTest ( myObject, myArray, myPrimitive )
+ {
+    myObject.changed = 'I have been changed';
+    myArray[2] = 'I have been changed';
+    myPrimitive = 'I have been changed';
+    <b>return</b>;
+ }
+
+myObject = { name: 'Original value', changed: 'Original value' }
+myArray = [ 'Original value', 'Original value', 'Original value' ];
+myPrimitive = 'Original value';
+
+output = 'myObject.name: ' + myObject.name + '\n';
+output += 'myObject.changed: ' + myObject.changed + '\n';
+output += 'myArray: ' + myArray + '\n';
+output += 'myPrimitive: ' + myPrimitive + '\n';
+
+alert('BEFORE FUNCTION:\n' + output);
+
+changeTest( myObject, myArray, myPrimitive );
+
+alert('BEFORE REASSIGNING OUTPUT:\n' + output);
+
+output = 'myObject.name: ' + myObject.name + '\n';
+output += 'myObject.changed: ' + myObject.changed + '\n';
+output += 'myArray: ' + myArray + '\n';
+output += 'myPrimitive: ' + myPrimitive + '\n';
+
+alert('AFTER REASSIGNING OUTPUT:\n' + output);
+</pre>
+
+<p>
+<button class="sample" onclick="function changeTest ( myObject, myArray, myPrimitive )
+ {
+    myObject.changed = 'I have been changed';
+    myArray[2] = 'I have been changed';
+    myPrimitive = 'I have been changed';
+    return;
+ }
+myObject = { name: 'Original value', changed: 'Original value' }
+myArray = [ 'Original value', 'Original value', 'Original value' ];
+myPrimitive = 'Original value';
+output = 'myObject.name: ' + myObject.name + '\n';
+output += 'myObject.changed: ' + myObject.changed + '\n';
+output += 'myArray: ' + myArray + '\n';
+output += 'myPrimitive: ' + myPrimitive + '\n';
+alert('BEFORE FUNCTION:\n' + output);
+changeTest( myObject, myArray, myPrimitive );
+alert('BEFORE REASSIGNING OUTPUT:\n' + output);
+output = 'myObject.name: ' + myObject.name + '\n';
+output += 'myObject.changed: ' + myObject.changed + '\n';
+output += 'myArray: ' + myArray + '\n';
+output += 'myPrimitive: ' + myPrimitive + '\n'; 
+alert('AFTER REASSIGNING OUTPUT:\n' + output);">Test out this script now.</button>
+</p>
+
+
+<p>
+The generic object as well as the array object had elements changed, but the primitive variable did not. This is known as the <em>function scope</em>. Primitives defined by the function only have the scope of the function, <em>even if the same exact name is used for a variable outside of the function</em> &ndash; see <span class="code highlight">myPrimitive</span>. However, objects have a more global scope than the function scope &ndash; see <span class="code highlight">myObject</span> and <span class="code highlight">myArray</span>. Do pay attention to this important distinction when designing code; it can lead to some very impressive and hard-to-track errors.
+</p>
+
+</section>
+
+
+
+<section>
+
+<h2> <span class="highlight">Review</span> of Standard JavaScript Functions </h2>
+
+<ul>
+<li><span class="code highlight">alert( )</span>: Makes a pop-up window with only one button. Returns no value.</li>
+<li><span class="code highlight">confirm( )</span>: Makes a pop-up window with two buttons. Returns <span class="code highlight">true</span> for OK and <span class="code highlight">false</span> for Cancel.</li>
+<li><span class="code highlight">prompt( )</span>: Makes a pop-up window with a text field for the user. Returns the string of what the user types.</li>
+</p>
+
+
+</section>
+
+<section>
+
+<h2> <span class="highlight">Anonymous</span> Functions </h2>
+
+<p>
+An anonymous function is a function that does not have a specific function name. This seems completely useless until one realizes that it can be assigned to a variable which will serve as the function's name. This is particularly useful for very small functions. For example:
+</p>
+
+<pre class="codeblock highlight">
+var square = function(number) { return number * number; }
+alert( square(4) ); // SHOWS 16
+</pre>
+
+<p>
+<button class="sample" onclick="var square = function(number) { return number * number; }
+alert( square(4) );">Test out this script now.</button>
+</p>
+
+</section>
+
+<section>
+
+<h2> <span class="highlight">Recursive</span> Functions </h2>
+
+<p>
+First, one should have a very clear understanding of what recursion is. Recursion is when something repeats itself within itself. So, a <em>recursive function</em> is a function that can call itself. It is very much like nesting an HTML list inside of an HTML list. Or, try dividing 1 by 3 using the standard division algorithm. Every new digit in 0.3333... is acquired by the algorithm, but on a smaller scale (ex: tenths, hundredths, thousandths, etc.).
+</p>
+
+<p>
+The standrd programming example of a recursive function is that of the factorial frequently seen with combinations and permutations. 8! = 8&times;7&times;6&times;5&times;4&times;3&times;2&times;1 = 40320. However, this could be found more easily if one already knew what 7! was: 8! = 8&times;(7&times;6&times;5&times;4&times;3&times;2&times;1) = 8&times;(7!) And, 7! = 7&times;(6!). And, 6! = 6&times;(5!). And so on down to 2! = 2&times;(1!) = 2&times;1. So, look at the following example of a recursive function:
+</p>
+
+<pre class="codeblock highlight">
+function <b>factorial</b> ( number )
+ {
+   number = parseInt( number );
+   if ( number &lt; 2 )
+     { return 1; }
+   else
+     { return (number * <b>factorial</b> ( number - 1 )); }
+ }
+
+alert( factorial( prompt( 'Enter a positive number:' )));
+</pre>
+
+
+<p>
+<button class="sample" onclick="function factorial ( number ) { number = parseInt( number ); if ( number < 2 ) { return 1; } else { return (number * factorial ( number - 1 )); } } alert( factorial( prompt( 'Enter a positive number:' )));">Test out this script now.</button>
+</p>
+
+<p>
+You might notice in playing with this example that after 21!, it starts the reply in engineering notation, which is essentially the same as scientific notation except that instead of having "*10^" exponent, it has "e+" that exponent. Furthermore, after 2<sup>1024</sup> &approx; 1.79e+308, JavaScript/ECMA simply evaluates a number as Infinity.
+</p>
+
+</section>
+
+<section>
+
+<h2> <span class="highlight">Maps:</span> Passing Functions to Other Functions </h2>
+
+<p>
+A <em>map</em> is when a function processes over each element of an iterable object, such as an array. The following example will demonstrate how to map a domain array onto a range array. Consider the mathematical function <em>y(x) = x<sup>2</sup> + 2x &ndash; 3</em>. (Note: this version includes poorly implemented scoping. Corrections will be discussed below.)
+</p>
+
+<pre class="codeblock highlight">
+function <b>map</b> ( quadratic, domain )
+ {
+   range = []; // START THE RESULT ARRAY
+   for ( x in domain )
+    {
+       range[x] = quadratic( domain[x] );
+
+    } // end for x in domain
+
+   return range;
+
+ } // end function map
+
+var quadratic = function(x) { return x*x + 2*x - 3; }
+var domain = [-5,-4,-3,-2,-1,0,1,2,3,4,5];
+<b>map</b>( quadratic, domain );
+
+alert( range );
+</pre>
+
+
+<p>
+<button class="sample" onclick="function map ( quadratic, domain )
+ { range = [];
+   for ( x in domain ) { range[x] = quadratic( domain[x] ); }
+   return range; }
+quadratic = function(x) { return x*x + 2*x - 3; }
+var domain = [-5,-4,-3,-2,-1,0,1,2,3,4,5];
+map( quadratic, domain );
+alert( range );">Test out this script now.</button>
+</p>
+
+
+<p>
+There are some technical details about the scoping that matter very much here. The keyword <span class="code highlight">var</span> <em>must</em> be used on the <em>domain</em> array that is begin passed into the function <em>map</em>; However, the keyword <span class="code highlight">var</span> <em>must NOT</em> be used on the <em>range</em> array that is defined with the function <em>map</em> but has global scope. Because this nuance is both confusing and unnecessary, as well as is quite hard to diagnose as the errors it throws are invisible, use the best practices shown below.
+</p>
+
+<p>
+It is far better to define the global variables on the top of the global level using the <span class="code highlight">var</span> keyword there. Oddly enough, the variable <em>range</em> is NOT defined as an array at the time that the function <em>map</em> interacts with it, but because it is global 
+</p>
+
+<pre class="codeblock highlight">
+function <b>map</b> ( quadratic, domain )
+ {
+   range = []; // REDEFINE GLOBAL VARIABLE AS AN ARRAY TO BE BUILT
+   for ( x in domain )
+    {
+       range[x] = quadratic( domain[x] );
+
+    } // end for x in domain
+
+   return range;
+
+ } // end function map
+
+
+// DEFINE GLOBAL VARIABLES
+
+<b>var</b> range; // ALLOWS FUNCTION TO USE range
+var quadratic = function(x) { return x*x + 2*x - 3; }
+var domain = [-5,-4,-3,-2,-1,0,1,2,3,4,5];
+
+// START TASKS
+
+<b>map</b>( quadratic, domain );
+alert( range + ' ' + testing );
+</pre>
+
+<p>
+<button class="sample" onclick="function map ( quadratic, domain )
+ { range = []; for ( x in domain ) { range[x] = quadratic( domain[x] ); }
+   return range; }
+quadratic = function(x) { return x*x + 2*x - 3; }
+var range;
+var domain = [-5,-4,-3,-2,-1,0,1,2,3,4,5];
+map( quadratic, domain );
+alert( range );">Test out this script now.</button>
+</p>
+
+<p>
+While it is very powerful to nest a function inside of a function to insulate variables from global changes, it can be tricky business. Best practices is to protect more global variables from unwanted changes by working from inner functions on out. But, implementing this can give rise to naming conflicts amongst some variables. Again, most conflicts are resolved from the inside out as well.
+</p>
+
+</section>
+
+
+
+
+<section>
+
+<h2> <span class="highlight">Arrow Notation</span> in Functions </h2>
+
+<p>
+Sometimes, an arrow map shorthand is used to shorten up the code. Compare and contrast the two <span class="code highlight">.map(&nbsp;)</span> methods below.
+</p>
+
+<pre class="codeblock highlight">
+var myArray = [ 'yellow', 'orange', 'red', 'brown' ];
+
+var anonymousArray = 
+   myArray.map(function(sample) { return sample.length; });
+
+var arrowArray = myArray.map(sample =&gt; sample.length);
+
+alert( anonymousArray );
+alert( arrowArray );
+</pre>
+
+<p>
+<button class="sample" onclick="var myArray = [ 'yellow', 'orange', 'red', 'brown' ];
+var anonymousArray = myArray.map(function(sample) { return sample.length; });
+var arrowArray = myArray.map(sample => sample.length);
+alert( anonymousArray );
+alert( arrowArray );
+">Test out this script now.</button>
+</p>
+
+<p>
+Both of these give, as an array, the lengths of each item from the original array.
+</p>
+
+</section>
+
+
+
+
+<section>
+
+<h2> The <span class="highlight">arguments</span> Object </h2>
+
+<p>
+A sometimes useful tool for a function to have is the <span class="code highlight">arguments</span> array-like object. (Note: one can use indices or the <span class="code highlight">.length</span> property, but not the full selection of array properties.).
+</p>
+
+<p>For example, imagine a function that calculate the average of a explicit list of numbers. The amount of numbers is not specified in advance. However, there is one more detail built in: this function will calculate the arithmetic, geometric, or harmonic mean. 
+</p>
+
+<pre class="codeblock highlight">
+function calcMean( meanType ) 
+ {
+   var result = 0;
+
+   if ( arguments[0] == 'geometric' )
+    {
+      result = 1;
+      for ( i = 1; i &lt; arguments.length; i++ )
+        { result *= arguments[i]; }
+      result = Math.pow(result, 1/(arguments.length - 1));
+    }
+
+   else if ( arguments[0] == 'harmonic' )
+    {
+      for ( i = 1; i &lt; arguments.length; i++ )
+        { result += 1/arguments[i]; }
+      result = (arguments.length - 1) / result;
+    }
+
+   else // default 'arithmetic'
+    {
+      for ( i = 1; i &lt; arguments.length; i++ )
+        { result += arguments[i]; }
+      result /= (arguments.length - 1);
+    }
+
+   return result;
+
+ } // end function calcMean
+
+output = 'arithmetic mean of 10, 20, 30, 40, 50 is: ';
+output += calcMean('arithmetic', 10, 20 ,30, 40, 50) + '\n';
+output += 'geometric mean of 10, 20, 30, 40, 50 is: ';
+output += calcMean('geometric', 10, 20 ,30, 40, 50) + '\n';
+output += 'harmonic mean of 10, 20, 30, 40, 50 is: ';
+output += calcMean('harmonic', 10, 20 ,30, 40, 50) + '\n';
+
+alert(output);
+
+</pre>
+
+<p>
+<button class="sample" onclick="function calcMean( meanType ) 
+ { var result = 0;
+   if ( arguments[0] == 'geometric' )
+    {
+      result = 1;
+      for ( i = 1; i < arguments.length; i++ )
+        { result *= arguments[i]; }
+      result = Math.pow(result, 1/(arguments.length - 1));
+    }
+   else if ( arguments[0] == 'harmonic' )
+    {
+      for ( i = 1; i < arguments.length; i++ )
+        { result += 1/arguments[i]; }
+      result = (arguments.length - 1) / result;
+    }
+   else
+    {
+      for ( i = 1; i < arguments.length; i++ )
+        { result += arguments[i]; }
+      result /= (arguments.length - 1);
+    }
+   return result;
+ } 
+output = 'arithmetic mean of 10, 20, 30, 40, 50 is: ';
+output += calcMean('arithmetic', 10, 20 ,30, 40, 50) + '\n';
+output += 'geometric mean of 10, 20, 30, 40, 50 is: ';
+output += calcMean('geometric', 10, 20 ,30, 40, 50) + '\n';
+output += 'harmonic mean of 10, 20, 30, 40, 50 is: ';
+output += calcMean('harmonic', 10, 20 ,30, 40, 50) + '\n';
+alert(output);">Test out this script now.</button>
+</p>
+
+<p>
+Note: keep in mind that both geometric and harmonic means should only be used with positive-valued data.
+</p>
+
+<p>
+The first argument, which resides in <span class="code highlight">arguments[0]</span>, is used by the selective code to determine how to calculate the mean using the numbers found starting from <span class="code highlight">arguments[1]</span> and going through to <span class="code highlight">arguments[arguments.length&nbsp;-&nbsp;1]</span>. And the most powerful part of this functional tool is that the amount of arguments given to the function can vary from function call to function call. 
+</p>
+
+</section>
+
+
+
+
+<section>
+
+<h2> The <span class="highlight">Rest</span> of the Parameters </h2>
+
+<p>
+An alternative way to handle a surplus of functional parameters is with <em>the rest</em> notation. This can only be applied to the last parameter of the function definition, and unlike the <span class="code highlight">arguments</span> limited array-length object, that final parameter actually constructs an array with full access to all array methods and characteristics. Below is a sample notation for this notation:
+</p>
+
+<pre class="codeblock highlight">
+function sample( first, second, ...theRest ) {
+  output = 'the first variable is type ' + typeof first;
+  output += ' and contains: ' + first;
+  output += 'the second variable is type ' + typeof second;
+  output += ' and contains: ' + second;
+  output += 'the rest variable is type ' + typeof theRest
+  output += ' and contains: ' + theRest;
+  return output;
+}
+
+alert( sample( 10, 20, 30, 40, 50, 60 ));
+</pre>
+
+<p>
+<button class="sample" onclick="function sample( first, second, ...theRest ) {
+  output = 'the first variable is type ' + typeof first;
+  output += ' and contains: ' + first;
+  output += '\nthe second variable is type ' + typeof second;
+  output += ' and contains: ' + second;
+  output += '\nthe rest variable is type ' + typeof theRest
+  output += ' and contains: ' + theRest;
+  return output;
+}
+
+alert( sample( 10, 20, 30, 40, 50, 60 ));
+">Test out this script now.</button>
+</p>
+
+<p>
+One of the common uses of <em>the rest parameters</em> is a distributive multiplication. Consider the following code: 
+</p>
+
+<pre class="codeblock highlight">
+function distribute( multiplicand, ...theOthers ) {
+  return theOthers.map(function( stuff ) {
+    return multiplicand * stuff;
+  });
+}
+
+output = 'distribute( 4, 10, 20, 30, 50 ) yields ' 
+output += distribute( 4, 10, 20, 30, 50 );
+output += '\nthe type of distribute( 4, 10, 20, 30, 50 ) yields ' 
+output += typeof distribute( 4, 10, 20, 30, 50 );
+
+alert( output );
+</pre>
+
+<p>
+<button class="sample" onclick="function distribute( multiplicand, ...theOthers ) {
+  return theOthers.map(function( stuff ) {
+    return multiplicand * stuff;
+  });
+}
+
+output = 'distribute( 4, 10, 20, 30, 50 ) yields ' 
+output += distribute( 4, 10, 20, 30, 50 );
+output += '\nthe type of distribute( 4, 10, 20, 30, 50 ) yields ' 
+output += typeof distribute( 4, 10, 20, 30, 50 );
+
+alert( output );
+">Test out this script now.</button>
+</p>
+
+<p>
+</p>
+Note: there are several applications of the distributive property exhibited here that does not even rely on arithmetic. This is quite the powerful tool.
+
+</section>
+
+
+
+
+
+
+<section>
+
+<h2> Defining <span class="highlight">Default Parameters</span> </h2>
+
+<p>
+Sometimes, instead as having more parameters than expected, a function is called with fewer parameters than expected. When this happens, the unsatisfied parameters are assigned as <em>undefined</em> within the scope of the function.
+</p>
+
+<p>
+In older incarnations of JavaScript/ECMA, this kind of mistaken call often needed to caught with a selection device that checks the <span class="code highlight">typeof</span> the arguments to prevent erroneous results. See below for the example:
+</p>
+
+<pre class="codeblock highlight">
+function add( first, second, third ) 
+ { 
+   if ((typeof third) == 'undefined') 
+     { third = 0; } 
+
+   return (first + second + third);
+ }
+
+alert(add(7,5)); // RESULTS 12 INSTEAD OF NaN
+</pre>
+
+<p>
+<button class="sample" onclick="function add( first, second, third ) { if ( typeof third == 'undefined') { third = 0; } return (first + second + third); } alert(add(7,5));">Test out this script now.</button>
+</p>
+
+<p>
+In more modern versions of JavaScript/ECMA, one can place default assigns in the function declaration. 
+</p>
+
+<pre class="codeblock highlight">
+function add( first, second = 0, third = 0 )
+  { return (first + second + third); }
+
+alert( add(7,5) ); // RESULTS 12 INSTEAD OF NaN
+alert( add(7) ); // RESULTS 7 INSTEAD OF NaN
+</pre>
+
+<p>
+<button class="sample" onclick="function add( first, second = 0, third = 0 ) { return (first + second + third); } alert( add( 7, 5 )); alert( add( 7 ));">Test out this script now.</button>
+</p>
+
+<p>
+Notice how the <span class="code highlight">add(7,5);</span> assigns the default 0 to <span class="code highlight">third</span> while <em>not assigning</em> 0 to <span class="code highlight">second</span>, but that <span class="code highlight">add(7);</span> assigns the default 0 to both <span class="code highlight">second</span> and <span class="code highlight">third</span>. 
+</p>
+
+</section>
+
+
+
+
+
+
+
+<section>
+<h2> This Week's Assignment(s): </h2>
+
+<ol>
+<li>
+Individual Built-It Task (iBIT): Build a library of functions that you can put into an external JavaScript file. Your library should inlcude the following:
+  <ul>
+  <li> A <span class="code highlight">build(&nbsp;)</span> function that is a shorthand for <span class="code highlight">document.write(&nbsp;)</span>. </li>
+  <li> An <span class="code highlight">element(&nbsp;)</span> shorthand function for <span class="code highlight">document.getElementById(&nbsp;)</span>. </li>
+  <li> Any other functions that you'd like to include. </li>
+  </ul>
+</li>
+<li>
+Group Built-It Task (gBIT): Build a <span class="code highight">spanstyle(&nbsp;)</span> shorthand function that will take two arguments: the first argument is the content to receive a string of HTML code that should receive a style, and the second argument is the style class to be applied. (Bonus challenge: if you can build it so that extra parameters are additional styles so that multiple styles are applied within a single <span class="code highlight">&ltspan&gt;</span> element.) Note: Each group will need to use some sample HTML code and have a small library of style classes to draw from. Lorem ipsum will suffice to demonstrate success on this assignment.
+</li>
+<li>
+Individual Reaction Response (iRR): What can go wrong when structuring many <span class="code highlight">if</span> and <span class="code highlight">else</span> conditional? What good habits will you regularly employ to avoid or repair these mistakes?
+</li>
+</ol>
+
+
+</section>
+
+<footer>
+ <script>
+    buildFooter( );
+ </script>
+</footer>
+
+</body>
+</html>

@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  
+  <!-- REQUIRED THREE ELEMENTS BELOW -->
+  <title id="theTitle"> </title>
+  <!-- REQUIRED THREE ELEMENTS ABOVE -->
+ 
+</head>
+<body>
+
+
+<section>
+    <h3> Individual Built-It Task (iBIT):</h3>
+<p>
+    Incorporate the following broken code into a webpage. Fix its mistakes (Note: there are at least 4 errors). Ultimately, when it works, it will calculate the hyponteuse of a right triangle given two floating-point legs supplied by the user, and then alert that calculation to the user. (Test: 0.5 and 1.2 should yield 1.3).
+</p>
+
+<pre class="codeblock highlight">
+&lt;script&gt;
+
+a = parseInt( prompt( 'Enter side A: ' ); <!--Error: Missing parenthesis & parseFloat-->
+b = parseInt( prompt( 'Enter side B: ' ); <!--Error: Missing parenthesis & parseFloat-->
+c = Math.sqrt( a*a + b*b );
+
+output += 'A right triangle with legs ' + a + ' and ' + b;
+output += ' has hypotenuse ' + c'; <!--Error: Extra apostrophe, change += to assignment operator (=) and join both outputs statements-->
+
+&lt;/script&gt;
+</pre>
+
+<p>
+<button class="sample" onclick="
+    a = parseFloat(prompt('Enter side A: '));
+    b = parseFloat(prompt('Enter side B: '));
+    c = Math.sqrt(a*a + b*b);
+    output = 'A right triangle with legs ' + a + ' and ' + b + ' has hypotenuse '  + c;
+    alert(output)" >
+    
+    Test out this script now.</button>
+</p>
+
+</section>
+
+
+
+</section>
+
+<footer>
+</footer>
+
+</body>
+</html>

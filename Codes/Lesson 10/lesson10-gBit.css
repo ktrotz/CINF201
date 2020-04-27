@@ -1,0 +1,21 @@
+#cell-r1-c1 { left: 25px; top: 25px; background-image:url('blank.png'); /* */ }
+ #cell-r1-c2 { left: 125px; top: 25px; background-image:url('blank.png'); /* */ }
+ #cell-r1-c3 { left: 225px; top: 25px; background-image:url('blank.png'); /* */ }
+ #cell-r2-c1 { left: 25px; top: 125px; background-image:url('blank.png'); /* */ }
+ #cell-r2-c2 { left: 125px; top: 125px; background-image:url('blank.png'); /* */ }
+ #cell-r2-c3 { left: 225px; top: 125px; background-image:url('blank.png'); /* */ }
+ #cell-r3-c1 { left: 25px; top: 225px; background-image:url('blank.png'); /* */ }
+ #cell-r3-c2 { left: 125px; top: 225px; background-image:url('blank.png'); /* */ }
+ #cell-r3-c3 { left: 225px; top: 225px; background-image:url('blank.png'); /* */ }
+  
+ [id*='cell'] {
+    border: solid 2px black; /* */
+	border-radius: 10px; /* */
+	display: inline-block; /* */
+    position: absolute; /* */
+	text-align: center; /* */
+	width: 100px; /* */
+    height: 100px; /* */
+ }
+
+ 

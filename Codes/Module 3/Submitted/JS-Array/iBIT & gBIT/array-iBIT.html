@@ -1,0 +1,53 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  
+  <!-- REQUIRED THREE ELEMENTS BELOW -->
+  <title id="theTitle"> array-iBIT </title>
+  <link href="standardLesson.css" rel="stylesheet" />
+  <script src="standardLesson.js"> </script>
+  <!-- REQUIRED THREE ELEMENTS ABOVE -->
+ 
+</head>
+<body>
+
+
+<section>
+<h2> Individual Built-It Task (iBIT): </h2>
+
+<p>
+    Start with the following array [50,45,40,35,30,25,20] (also see code below). Use array methods (without directly using the assignment operator) to modify the array (similar to what was done above) so that it becomes [50,55,45,44,43,42,41,40,30,20,60,65]. Alert the array to demonstrate that it works.
+</p>
+
+<pre>
+    // starting array
+    task1 = [ 50, 45, 40, 35, 30, 25, 20 ]; 
+    
+    /* YOUR CODE GOES HERE */
+    
+    // this should alert [50, 55, 45, 44, 43, 42, 41, 40, 30, 20, 60, 65 ]
+    alert( task1 );
+</pre>
+
+<p>
+<button class="sample" onclick="
+    // starting array
+    task1 = [ 50, 45, 40, 35, 30, 25, 20 ]; 
+    
+    /* YOUR CODE GOES HERE */
+    task1.splice(1,0, 55, 45);
+    task1.splice(3,1, 44, 43, 42, 41);
+    task1.splice(8,1);
+    task1.splice(9,1);
+
+    task1.push(60);
+    task1.push(65);
+    
+    // this should alert [50, 55, 45, 44, 43, 42, 41, 40, 30, 20, 60, 65 ]
+    alert( task1 );
+    ">Test out this script now.</button>
+</p>
+
+</body>
+</html>

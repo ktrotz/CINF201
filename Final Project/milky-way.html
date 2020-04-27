@@ -1,0 +1,216 @@
+<!doctype html>
+<html lang= "en">
+
+<head>
+	<link rel="stylesheet" type="text/css" href="design.css">
+	<meta cha7rset= "utf-8"/>
+    <title>Space Talk - Milky Way</title>
+    <script src="standardLesson.js"> </script> 
+    <style>
+        #milkyway {
+            color:rgb(253, 209, 11);
+            text-align: center;
+            font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+        }
+        p {
+            font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+            color: white;
+            font-size: 20px;
+            word-wrap: break-word;
+            text-align: center;
+        } 
+
+        #milkyway-image{
+            display: block;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        
+        table {
+            font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+            color: white;
+            font-size: 20px;
+            text-align: left; /*text move to left */
+            border: none;
+            word-wrap: break-word;
+        }  
+
+        table td{
+            text-align: left; /*text move to left */
+            padding-top: 10px;
+            padding-right: 10px;
+            padding-left: 10px;
+        } 
+
+        #milkyfacts {
+            font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+            color: white;
+            font-size: 20px;
+            text-align: left; /*text move to left */
+            border: none; /*border surrounding all elements of the table */
+            word-wrap: break-word;
+            padding-top: 20px;
+            padding-right: 20px;
+            padding-left: 20px;
+            padding-bottom: 30px;
+        } 
+    </style>
+</head>
+
+<body>
+    <nav class="navbar" style="background: url('space_banner.jpg')">
+            <h1 class="head-logo">Space Talk</h1> 
+
+            <a href="tic-tac-toe.html">Play Tic-Tac-Toe</a> 
+            <a href="milky-way.html">Milky Way</a> 
+
+            <div class="solar-dropdown">
+                <button class="solar-button">Solar System <!--dropdown button name-->
+                <i class="fa fa-caret-down"></i> <!--down arrow-->
+                </button>
+
+                <!--links under Solar System dropdown menu-->
+                <div class="solar-content">
+                    <a href="sun.html">Sun</a> 
+                    <a href="planets.html">Planets</a>
+                </div>
+            </div>  
+
+            <a href="home.html">Home</a> 
+        </nav> 
+
+    <section>
+            <p id="quizinfo">
+                Read the Milky Way facts below and then take the quiz.
+            </p>
+            
+            <p>
+            <button class="trivia" onclick="
+                alert('Welcome to the Milky Way Trivia!');
+                alert('Here is 5 questions. Answer correctly to get a point.');
+                score = 0;
+            
+                //Questions
+                ans = prompt('What type of galaxy is the Milky Way?');
+                if(ans == 'barred spiral' || ans == 'Barred Spiral' || ans == 'Barred spiral' || ans == 'barred Spiral' )
+                    score++;
+            
+                ans = prompt('How old is the Milky Way in billions of years');
+                if(ans == '13.6')
+                    score++;
+            
+                ans = prompt('What Constellation is the Milky Way?');
+                if(ans == 'Sagittarius' || ans == 'sagittarius')
+                    score++;
+            
+                ans = prompt('Does the Milky Way have a black hole in its center?');
+                if(ans == 'yes' || ans == 'Yes' || ans == 'y' || ans == 'Y')
+                    score++;
+            
+                ans = prompt('Which galaxy will the Milky Way collide with in about 5 billion years?');
+                if(ans == 'Andromeda' || ans == 'andromeda' || ans == 'Andromeda Galaxy' || ans == 'andromeda galaxy')
+                    score++;
+            
+                //Score 
+                a = 'You scored ' + score + ' out of 5! \n';
+            
+                if(score == 5)
+                    alert(a + 'PERFECT SCORE!');
+            
+                else if(score < 5 && score > 2)
+                    alert(a + 'Good job');
+            
+                else if(score < 2)
+                    alert(a + 'Better luck next time');
+                
+                ">
+                
+                Play Trivia</button> 
+            </p>
+        </section> 
+
+    <!--Separate space for paragraph-->
+    <div>
+            </br>
+            <h1 id="milkyway">The Milky Way</h1>
+            <img src="milkyway.png" alt="Milky Way" width="300" height="300" id="milkyway-image">
+
+            <p>
+                    The Milky Way Galaxy is our home galaxy in the universe. It is a fairly typical barred spiral with four major arms in its disk, at least one spur, and a newly discovered outer arm. The galactic centre, which is located about 26,000 light-years from Earth, contains at least one supermassive black hole (called Sagittarius A*), and is crossed by a bar. The Milky Way began forming around 12 billion years ago and is part of a group of about 50 galaxies called the Local Group. The Andromeda Galaxy is part of this group as are numerous smaller galaxies, including the Magellanic Clouds. The Local Group itself is part of a larger gathering of galaxies called the Virgo Supercluster of galaxies.
+            </p>
+    </div>
+
+    <table style="width:40%">       
+        <tr>
+            <td>
+                Type:
+            </td>
+            <td>
+                Barred Spiral Galaxy
+            </td>
+        </tr>
+        <tr>
+            <td>
+                Diameter:
+            </td>
+            <td>
+                100,000 - 180,000 light years
+            </td>
+        </tr>
+        <tr>
+            <td>
+                Mass:
+            </td>
+            <td>
+                800 - 1500 Solar Mass
+            </td>
+        </tr>  
+        <tr>
+            <td>
+                Age:
+            </td>
+            <td>
+                13.6 Billion years
+            </td>
+        </tr>  
+        <tr>
+            <td>
+                Number of Stars: 
+            </td>
+            <td>
+                100 - 400 billion
+            </td>
+        </tr>   
+        <tr>
+            <td>
+                Constellation:
+            </td>
+            <td>
+                Sagittarius
+            </td>
+        </tr>   
+    </table>
+
+    <div>
+        <ul style="list-style-type:circle;" id="milkyfacts">
+            <li>The Milky Way began as a series of dense regions in the early universe not long after the Big Bang. The first stars to form were in globular clusters that still exist. They are among the oldest stars formed in the Milky Way region.</li>
+            <li>The Milky Way moves through space at a velocity of about 552 kilometres per second (343 miles per second) with respect to the Cosmic Microwave Background radiation.</li>
+            <li>The Milky Way’s central core contains a supermassive black hole. It is commonly referred to as Sagittarius A*. It contains the mass of about 4.3 million Suns.</li>
+            <li>Our galaxy will collide with Andromeda Galaxy in about 5 billion years. Some astronomers refer to our two galaxy as a binary system of giant spirals.</li>
+        </ul>              
+    </div>
+
+
+    <!--footer link-->
+    <footer>
+            <p>For more info: 
+                <a href="https://science.nasa.gov/astrophysics/focus-areas/what-are-galaxies">NASA - Milky Way</a>
+            </p>
+
+            <script>
+                buildFooter( );
+            </script>
+    </footer>
+</body>
+
+</html>

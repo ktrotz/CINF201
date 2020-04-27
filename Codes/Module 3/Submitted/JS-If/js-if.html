@@ -1,0 +1,464 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  
+  <!-- REQUIRED THREE ELEMENTS BELOW -->
+  <title id="theTitle"> </title>
+  <link href="standardLesson.css" rel="stylesheet" />
+  <script src="standardLesson.js"> </script>
+  <!-- REQUIRED THREE ELEMENTS ABOVE -->
+ 
+</head>
+<body>
+
+<header> 
+ <script>
+    buildHeader( );
+ </script>
+</header>
+
+<nav>
+ <script>
+    buildNavigationMenu( );
+ </script>
+<div id="tableOfContents"> </div> <!-- TO BE CONSTRUCTED BY END DOM SCRIPT -->
+</nav> 
+
+<section>
+<h2> A Brief <span class="highlight">Overview</span> of Structured Program </h2>
+
+<p>
+Renowned computer scientist Donald Knuth has said <q>Instead of imagining that our main task is to instruct a computer what to do, let us concentrate rather on explaining to human beings what we want a computer to do.</q> <span class="citation">Knuth, Donald Erwin (1984). <a href="http://www.literateprogramming.com/knuthweb.pdf"><q>Literate Programming</q></a> (PDF).</span> As programming languages evolved in the 1950s and 1960s, there was a consensual concern that overreliance on a <span class="code highlight">goto</span> command, that just jumps into a place in the code, was actually serving to undermine the effectiveness of coding in the first place. That is, each <span class="code highlight">goto</span>, unless very carefully crafted with the entire program in mind, would allow for more logical breaks than it solved. This was definitely exacerbated by the outpacing of computer programming theory growth by computer power growth. In the late 1960s, renown computer scientist Edgser Dijkstra coined the phrase <q>structed programming</q>. There was essentially propsed having only three tools to control the structure of the programs. They were 1. sequential code, 2. selective code, and 3. repetitive code. Since such time, a fourth tools has been included: 4. recursive code. These have been the foundation of all scripting and programming languages ever since the early 1970s.
+</p>
+
+<ol>
+ <li> 
+   <em>Sequential Code</em>: This is the default. Code flows automatically from one line to the next.
+ </li>
+ <li>
+  <em>Selective Code</em>: This will isolate blocks of code behind logical barriers that need to be true for execution. The most common form is the <span class="code highlight">if</span> statement. For most languages, this has been adapted nicely into an <span class="code highlight">if&nbsp;{&nbsp;...&nbsp;} else&nbsp;if&nbsp;{&nbsp;...&nbsp;} else&nbsp;if&nbsp;{&nbsp;...&nbsp;} ... else&nbsp;{&nbsp;...&nbsp;}</span> structure. There is even in some languages a <span class="code highlight">switch</span> command that will list cases in order, although every such selection can be (and probably should be) rewritten in the IF/ELSE-IF/ELSE structure.
+ </li>
+ <li>
+  <em>Repetitive Code</em>: This is essentially a logical loop that executes repeatedly until some logical condition is met.
+  <ol>
+    <li>
+     There is the <span class="code highlight">for(&nbsp;<em>counter&nbsp;parameters</em>&nbsp;)&nbsp;{&nbsp;...&nbsp;}</span> loop that sets up a counter for the number of repetitions.
+    </li>
+    <li>
+     More modern programming has adapted this to be organically set up from a list (or array) of items. (That is, the <span class="code highlight">for(<em>items</em> in <em>someList</em>)&nbsp;{&nbsp;...&nbsp;}</span> repetition derives the number of repetitions not from the programmer, but rather from an array of values stored in a list or array variable.) FOR loops stop when the counter runs out.
+    </li>
+    <li>
+	 There is also the <span class="code highlight">while(&nbsp;<em>condition</em>&nbsp;)&nbsp;{&nbsp;...&nbsp;}</span> loop that does not rely on a counter, but rather relies on some other logical condition. If the condition is not true to start, the block of code in the loop is never executed.
+    </li>
+    <li> 
+     There is also a <span class="code highlight">do&nbsp;{&nbsp;...&nbsp;} while(&nbsp;<em>condition</em>&nbsp;)</span> variant that will at least executive the code once before checking the logical condition.
+    </li>
+  </ol>
+ </li>
+ <li>
+  <em>Recursive Code</em>: This is when a function is build that can call copies of itself before resolving the original function call. The theoretical limit here in the random-access memory available (usually determined by the browser, app, or device).
+ </li>
+</ol>
+
+</section>
+
+
+
+<section>
+
+<h2> Using <span class="highlight">If</span> Statements </h2>
+
+<p>
+Earlier, we saw have variables can hold information for later use. Selection code can make good use of that kind of information. For example:
+</p>
+
+<pre class="codeblock highlight">
+&lt;script&gt;
+
+x = parseInt( prompt( 'Enter a number from 1 to 10' ));
+if ( x > 10 ) { alert( 'Your guess is too high' ); }
+
+&lt;/script&gt;
+</pre>
+
+<p>
+<button class="sample" onclick="x = parseInt( prompt( 'Enter a number from 1 to 10' ));
+if ( x > 10 ) { alert( 'Your guess is too high' ); }">Test out this script now.</button> Try entering a '5'. Then, try entering a '12'. With these two examples, you'll see selective coding at work.
+</p>
+
+<p>
+If you recall, the <span class="code highlight">confirm(&nbsp;)</span> function can return the values <span class="code highlight">true</span> or <span class="code highlight">false</span>. Essentially, the phrase <span class="code highlight">x&nbsp;>&nbsp;10</span> was being evaluated first, turned into one of those two Boolean values, and then sent to the selection (IF) function. That is, it is possible to simply put one of those Boolean values into the condition directly. That is, <span class="code highlight">if(&nbsp;true&nbsp;){&nbsp;...&nbsp;}</span> will always execute and <span class="code highlight">if(&nbsp;false&nbsp;){&nbsp;...&nbsp;}</span> will never execute. However, letting the user decide each time which of these values to use is a powerful design feature. For example:
+</p>
+
+<pre class="codeblock highlight">
+&lt;script&gt;
+
+userTruth = confirm('Should the alert window pop up?');
+if ( userTruth ) { alert( 'Thanks for clicking \'OK\'' ); }
+
+&lt;/script&gt;
+</pre>
+
+<p>
+<button class="sample" onclick="userTruth = confirm('Should the alert window pop up?'); if ( userTruth ) { alert( 'Thanks for clicking \'OK\'' ); }
+">Test out this script now.</button> Try clicking 'OK'. Then, try clicking 'Cancel'. With these two examples, you'll again see selective coding at work. Most importantly, this reinforcing what the program is thinking about what occurs in the parentheses of one of these control structures: 1. Evaluate truth value. 2. Send to control structure. 3. Appropriate results (which could be nothing) happens.
+</p>
+
+</section>
+
+
+
+<section>
+
+<h2> Using <span class="highlight">Else</span> Statements </h2>
+
+<p>
+Sometimes, we will want to have options in what code is triggered.
+</p>
+
+<pre class="codeblock highlight">
+&lt;script&gt;
+
+x = parseInt( prompt( 'Enter a number from 1 to 10' ));
+if ( x &gt; 10 ) 
+  { alert( 'Your guess is too high' ); }
+else if ( x &lt; 1 ) 
+  { alert( 'Your guess is too high' ); }
+else
+  { alert( 'You guessed a number from 1 to 10' ); }
+
+&lt;/script&gt;
+</pre>
+
+<p>
+<button class="sample" onclick="x = parseInt( prompt( 'Enter a number from 1 to 10' ));
+if ( x > 10 ) { alert( 'Your guess is too high.' ); } else if ( x < 1 ) { alert('Your guess is too low.');} else { alert( 'You guessed a number from 1 to 10' ); } ">Test out this script now.</button> Try entering a '&ndash;4', and then try entering a '8', and then try entering '10.12345', all to see what the various options do.
+</p>
+
+<p>
+If you recall, the <span class="code highlight">confirm(&nbsp;)</span> function can return the values <span class="code highlight">true</span> or <span class="code highlight">false</span>. Essentially, the phrase <span class="code highlight">x&nbsp;>&nbsp;10</span> was being evaluated first, <em>turned into one of those two Boolean values</em>, and then sent to the selection (IF) function. That is, it is possible to simply put one of those Boolean values into the condition directly. That is, <span class="code highlight">if(&nbsp;true&nbsp;){&nbsp;...&nbsp;}</span> will always execute and <span class="code highlight">if(&nbsp;false&nbsp;){&nbsp;...&nbsp;}</span> will never execute. However, letting the user decide each time which of these values to use is a powerful design feature. For example:
+</p>
+
+<pre class="codeblock highlight">
+&lt;script&gt;
+
+userTruth = confirm('Should the alert window pop up?');
+if ( userTruth ) { alert( 'Thanks for clicking \'OK\'' ); }
+
+&lt;/script&gt;
+</pre>
+
+<p>
+<button class="sample" onclick="userTruth = confirm('Should the alert window pop up?'); if ( userTruth ) { alert( 'Thanks for clicking \'OK\'' ); }
+">Test out this script now.</button> Try clicking 'OK'. Then, try clicking 'Cancel'. With these two examples, you'll again see selective coding at work. Most importantly, this reinforcing what the program is thinking about what occurs in the parentheses of one of these control structures:
+</p>
+<ol>
+  <li> Evaluate the truth value. </li>
+  <li> Send truth value to the control structure. </li>
+  <li> Control structure applies appropriate results (which could be nothing). </li>
+</ol>
+</p>
+
+</section>
+
+
+
+
+
+
+<section>
+
+<h2> <span class="highlight">Operators</span> in JavaScript/ECMA </h2>
+
+<p>
+There are several different types of operators in JavaScript/ECMA: Arithmetic, Assignment, Comparison, Logical, String, and a few other special types.
+</p>
+
+<table class="highlight firstChildCenter thirdChildCenter">
+<caption> Arithmetic Operators in JavaScript/ECMA </caption>
+ <tr>
+  <th> Type </th>
+  <th> Common Phrasing </th>
+  <th> Symbol </th>
+  <th> Example </th>
+ </tr>
+ <tr>
+  <td> Addition </td>
+  <td> this <em>plus</em> that </td>
+  <td> + </td>
+  <td> <span class="code highlight">5 + 10</span> will add 5 and 10 to make 15. (Note: see <em>String Concatenation</em>)</td>
+ </tr>
+ <tr>
+  <td> Subtraction </td>
+  <td> this <em>minus</em> that </td>
+  <td> &ndash; </td>
+  <td> <span class="code highlight">25 &ndash; 5</span> will subtraction 5 from 25 to make 20. </td>
+ </tr>
+ <tr>
+  <td> Multiply </td>
+  <td> this <em>times</em> that </td>
+  <td> * </td>
+  <td> <span class="code highlight">5 * 10</span> will multipy 5 and 10 to make 50. </td>
+ </tr>
+ <tr>
+  <td> Divide </td>
+  <td> this <em>divided by</em> that </td>
+  <td> / </td>
+  <td> <span class="code highlight">35 / 5</span> will divide 35 by 5 to make 7. </td>
+ </tr>
+ <tr>
+  <td> Modulus </td>
+  <td> this <em>modulus</em> that </td>
+  <td> % </td>
+  <td> <span class="code highlight">17 % 5</span> will divide 17 by 5 to find the remainder 2. (Note: negatives are ignored until after modulus is calculated.) </td>
+ </tr>
+ <tr>
+  <td> Increment </td>
+  <td> Add 1 to that </td>
+  <td> ++ </td>
+  <td> <span class="code highlight">x++</span> will use x, then add 1 to it.<br /><span class="code highlight">++x</span> will add 1 to x, then use it. </td>
+ </tr>
+ <tr>
+  <td> Decrement </td>
+  <td> Subtract 1 from that </td>
+  <td> <span class="kernUp">&ndash;&ndash;</span> </td>
+  <td> <span class="code highlight">x&ndash;&ndash;</span> will use x, then subtract 1 from it.<br /><span class="code highlight">&ndash;&ndash;x</span> will subtract 1 from x, then use it. </td>
+ </tr>
+</table>
+
+<br />
+
+<table class="highlight firstChildCenter thirdChildCenter">
+<caption> Assignment Operators in JavaScript/ECMA </caption>
+ <tr>
+  <th> Type </th>
+  <th> Common Phrasing </th>
+  <th> Symbol </th>
+  <th> Example </th>
+ </tr>
+ <tr>
+  <td> Assignment </td>
+  <td> right side <em>becomes</em> left side </td>
+  <td> = </td>
+  <td> <span class="code highlight">x = 10</span> tells variable x to receive the value 10.
+ </tr>
+ <tr>
+  <td> Reassignment </td>
+  <td> left side <em>builds from</em> right side </td>
+  <td> +=<br /><br /><span class="kernUp">&ndash;=</span><br />*=<br />/=<br />%=<br /><br /><br /> </td>
+  <td> <span class="code highlight">x += '10'</span> concatenates '10' to what is already in x<br /> <span class="code highlight">x += 10</span> add 10 to the number already in x<br /> <span class="code highlight">x &ndash;= 10</span> subtracts 10 from the number already in x<br /> <span class="code highlight">x *= 10</span> multiples by 10 the number already in x<br /><span class="code highlight">x /= 10</span> divide by 10 the number already in x<br /><span class="code highlight">x %= 10</span> find the base 10 modulus of the number already in x (again: modulus resolved before negatives).</td>
+ </tr>
+</table>
+
+<br />
+
+<table class="highlight firstChildCenter thirdChildCenter">
+<caption> Comparison Operators in JavaScript/ECMA </caption>
+ <tr>
+  <th> Type </th>
+  <th> Common Phrasing </th>
+  <th> Symbol </th>
+  <th> Example </th>
+ </tr>
+ <tr>
+  <td> Equality </td>
+  <td> this <em>has the same value as</em> that </td>
+  <td> == </td>
+  <td> <span class="code highlight">x == 10</span> asks if x has the value 10. </td>
+ </tr>
+ <tr>
+  <td> Identity </td>
+  <td> this <em>is the same thing as</em> that </td>
+  <td> === </td>
+  <td> <span class="code highlight">x === y</span> asks if x and y refer to the same object. (Note: if x and y are variables with equal primitive values, <span class="code highlight">true</span> is returned.) </td>
+ </tr>
+ <tr>
+  <td> NOT Equality </td>
+  <td> this <em>has the same value as</em> that </td>
+  <td> != </td>
+  <td> <span class="code highlight">x != 10</span> asks if x <em>doesn't have</em> the value 10. </td>
+ </tr>
+ <tr>
+  <td> NOT Identity </td>
+  <td> this <em>is the same thing as</em> that </td>
+  <td> !== </td>
+  <td> <span class="code highlight">x !== y</span> asks if x and y refer to <em>different</em> objects. (Note: if x and y are variables with equal primitive values, <span class="code highlight">false</span> is returned.) </td>
+ </tr>
+ <tr>
+  <td> Inequalities (Exclusive) </td>
+  <td> <em>less than<em><br /><em>greater than</em> </td>
+  <td> &lt;<br />&gt; </td>
+  <td> <span class="code highlight">x &lt; y</span> says that x is less than y. <br /> <span class="code highlight">x &gt; y</span> says that x is greather than y. </td>
+ </tr>
+ <tr>
+  <td> Inequalities (Inclusive) </td>
+  <td> <em>no&nbsp;greater&nbsp;than<em><br /><em>no less than</em> </td>
+  <td> &lt;=<br />&gt;= </td>
+  <td> <span class="code highlight">x &lt;= y</span> says that x is less than y. <br /> <span class="code highlight">x &gt;= y</span> says that x is greather than y. </td>
+ </tr>
+</table>
+
+<br />
+
+<table class="highlight firstChildCenter thirdChildCenter">
+<caption> Logical Operators in JavaScript/ECMA </caption>
+ <tr>
+  <th> Type </th>
+  <th> Common Phrasing </th>
+  <th> Symbol </th>
+  <th> Example </th>
+ </tr>
+ <tr>
+  <td> Conjunction </td>
+  <td> this <em>and</em> that </td>
+  <td> &amp;&amp; </td>
+  <td> <span class="code highlight">x &amp;&amp; y</span> is <span class="code highlight">true</span> only when both x and y are <span class="code highlight">true</span>. </td>
+ </tr>
+ <tr>
+  <td> Disjunction </td>
+  <td> this <em>or</em> that </td>
+  <td> || </td>
+  <td> <span class="code highlight">x || y</span> is <span class="code highlight">true</span> whenever at least one of x and y are <span class="code highlight">true</span>. </td>
+ </tr>
+ <tr>
+  <td> Negation </td>
+  <td> <em>not</em> this </td>
+  <td> ! </td>
+  <td> <span class="code highlight">!x</span> is <span class="code highlight">true</span> when x is <span class="code highlight">false</span> and vice versa. </td>
+ </tr>
+</table>
+
+<br />
+
+<table class="highlight firstChildCenter thirdChildCenter">
+<caption> String Operators in JavaScript/ECMA </caption>
+ <tr>
+  <th> Type </th>
+  <th> Common Phrasing </th>
+  <th> Symbol </th>
+  <th> Example </th>
+ </tr>
+ <tr>
+  <td> Concatenations </td>
+  <td> this <em>attaches</em> to that </td>
+  <td> + </td>
+  <td> <span class="code highlight">'web' + 'page'</span> builds the single string 'webpage'. </td>
+ </tr>
+ <tr>
+  <td> Concatenations </td>
+  <td> this <em>attaches</em> to that </td>
+  <td> += </td>
+  <td> <span class="code highlight">word + 'new'</span> concatenates <span class="code highlight">'new'</span> at the end of whatever was stored in the variable <span class="code highlight">word</span>, possibly changing the type of the information stored to string. </td>
+ </tr>
+</table>
+
+<br />
+
+<table class="highlight firstChildCenter secondChildCenter">
+<caption> Word Operators in JavaScript/ECMA </caption>
+ <tr>
+  <th> Type </th>
+  <th> Symbol </th>
+  <th> Example </th>
+ </tr>
+ <tr>
+  <td> Type Identifier </td>
+  <td> typeof </td>
+  <td> <span class="code highlight">typeof x</span> returns the type of information stored in the variable x. Options are string, number, boolean, object, function, or undefined. (Note: NaN is a number while array and null are objects.) </td>
+ </tr>
+ <tr>
+  <td> Field Deletion </td>
+  <td> delete </td>
+  <td> <span class="code highlight">delete object.field</span> will delete a particular field of an object. For example:<br /><span class="code highlight">var myCar = {color:'red', model:'sedan', mileage:32}<br />delete myCar.mileage;</span>
+ </tr>
+</table>
+
+</section>
+
+
+
+<section>
+<h2> This Week's Assignment(s): </h2>
+
+<ol>
+<li>
+Individual Built-It Task (iBIT): Fix the sample code above so that entering '10.12345' into the Guess A Number From 1 To 10 script works properly.
+</li>
+<li>
+Group Built-It Task (gBIT): Consider the <em>logical operators</em> in the following script as well as the modulus operator in the arithmetic section. The script <em>should</em> (but <em>doesn't</em> check for divisibility by 2 through 10</em>. Explain what is <em>actually</em> happening with this script. Test it out using no fewer than 10 different examples. Determine how to fix the code so that it performs as intended.
+<pre class="codeblock highlight" style="font-size:85%;">
+
+q1 = 'Enter the tens digit of your 2-digit number:';
+a = parseInt( prompt( q1 ));
+
+q2 = 'Enter the ones digit of your 2-digit number:';
+b = parseInt( prompt( q2 ));
+
+if ( a < 0 || a >= 10 )
+ { alert('Your tens digit is invalid: ' + a); }
+
+else if ( b < 0 || b >= 10 )
+ { alert('Your ones digit is invalid: ' + b); }
+
+else
+ {
+   number = 10*a + b;
+   output = 'you built the number ' + number;
+
+   if ( number % 2 == 0 ) 
+     { output += '\n' + number + ' is divisible by 2'; }
+
+   if ( number % 3 == 0 ) 
+     { output += '\n' + number + ' is divisible by 3'; }
+
+   if ( number % 4 == 0 ) 
+     { output += '\n' + number + ' is divisible by 4'; }
+
+   if ( number % 5 == 0 ) 
+     { output += '\n' + number + ' is divisible by 5'; }
+
+   if ( number % 6 == 0 ) 
+     { output += '\n' + number + ' is divisible by 6'; }
+
+   if ( number % 7 == 0 ) 
+     { output += '\n' + number + ' is divisible by 7'; }
+
+   if ( number % 8 == 0 ) 
+     { output += '\n' + number + ' is divisible by 8'; }
+
+   if ( number % 9 == 0 ) 
+     { output += '\n' + number + ' is divisible by 9'; }
+
+   if ( number % 10 == 0 ) 
+     { output += '\n' + number + ' is divisible by 10'; }
+
+   else
+     { output += '\n' + number + ' is prime'; }
+
+ } // end defualt else
+
+alert( output );
+
+</pre>
+
+</li>
+<li>
+Individual or Group Built-It Task (Your Choice): Design a short trivia game (3-5 questions). Keep track of a player's score. Report the final score. Have at least 3 different final messages ('Better luck next time', 'Good job', and 'PERFECT SCORE!').
+</li>
+<li>
+Individual Reaction Response (iRR): What can go wrong when structuring many <span class="code highlight">if</span> and <span class="code highlight">else</span> conditional? What good habits will you regularly employ to avoid or repair these mistakes?
+</li>
+</ol>
+
+
+</section>
+
+<footer>
+ <script>
+    buildFooter( );
+ </script>
+</footer>
+
+</body>
+</html>

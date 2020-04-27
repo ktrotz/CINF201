@@ -1,0 +1,502 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  
+  <!-- REQUIRED THREE ELEMENTS BELOW -->
+  <title id="theTitle"> X </title>
+  <link href="standardLesson.css" rel="stylesheet" />
+  <script src="standardLesson.js"> </script>
+  <!-- REQUIRED THREE ELEMENTS ABOVE -->
+ 
+</head>
+<body>
+
+<header> 
+ <script>
+    buildHeader( );
+ </script>
+</header>
+
+<nav>
+ <script>
+    buildNavigationMenu( );
+ </script>
+<div id="tableOfContents"> </div> <!-- TO BE CONSTRUCTED BY END DOM SCRIPT -->
+</nav> 
+
+<section>
+<h2> Introduction to <span class="highlight">Arrays</span> </h2>
+
+<p>
+An <em>array</em> is a way to have a single variable store multiple pieces of information with a sequential <em>index</em>. It is like having a variable that behaves as a list. Keep in mind that the index enumerations with start with 0.
+</p>
+
+<p>
+Note: this <em>rainbow</em> array begins imperfectly in order to demonstrate throughout the webpage how to manipulate the array.
+</p>
+
+<pre class="codeblock highlight">
+rainbow = [ 'red', 'orange', 'yellow', 'blue', 
+           'indigo', 'purple', 'pink' ];
+
+alert( rainbow[0] );
+</pre>
+
+<p>
+<button class="sample" onclick="rainbow = [ 'red', 'orange', 'yellow', 'blue', 'indigo', 'purple', 'pink' ]; alert( rainbow[0] );">Test out this script now.</button>
+</p>
+
+<p>
+The <em>square-brackets</em> &ndash; [ and ] &ndash; are used in two different ways here. First, in defining the whole list, they are the delimiters. That is, they start and end the whole list. Then, later, when retrieving the information, they are attached to the name of the variable and delimit the index (or position) on that list. One sees 'red' because 'red' is in position 0 in the <em>rainbow</em> array, just as 'orange' is in position 1 in the <em>rainbow</em> array.
+</p>
+
+</section>
+
+<section>
+<h2> <span class="highlight">How many</span> elements are in this array? </h2>
+
+<p>
+The number of elements in an array can be accessed using the <span class="code highlight">.length</span> field inherent to every array. The array below has 7 elements.
+</p>
+
+<pre class="codeblock highlight">
+rainbow = [ 'red', 'orange', 'yellow', 'blue', 
+           'indigo', 'purple', 'pink' ];
+
+alert( 'rainbow has ' + rainbow.length + ' elements.');
+</pre>
+
+<p>
+<button class="sample" onclick="rainbow = [ 'red', 'orange', 'yellow', 'blue', 'indigo', 'purple', 'pink' ]; alert( 'rainbow has ' + rainbow.length + ' elements.');">Test out this script now.</button>
+</p>
+
+<p>
+The .length field can be a useful property, as will be seen in upcoming sections. Also, one must be careful in distinguishing the .length value with the indexing of elements within the array itself.
+</p>
+
+<pre class="codeblock highlight">
+rainbow = [ 'red', 'orange', 'yellow', 'blue', 
+           'indigo', 'purple', 'pink' ];
+
+alert( 'rainbow[7] is ' + rainbow[7]);
+</pre>
+
+<p>
+<button class="sample" onclick="rainbow = [ 'red', 'orange', 'yellow', 'blue', 'indigo', 'purple', 'pink' ]; alert( 'rainbow[7] is ' + rainbow[7]);">Test out this script now.</button>
+</p>
+
+<p>
+This undefined response is to be expected. If counting starts at 0, then it will naturally end one less than the .length value.
+</p>
+
+</section>
+
+
+
+
+
+<section>
+
+<h2> Finding an <span class="highlight">Index of</span> an Array Element </h2>
+
+<p>
+First, let's take on the issue that it should be 'violet', not 'purple'. So, we would need to identify the index at which the erroneous value ('purple') exists, and then (re)assign the current value ('violet') at that index.
+</p>
+
+<h3> Locating an Array Element </h3>
+
+<pre class="codeblock highlight">
+rainbow = [ 'red', 'orange', 'yellow', 'blue', 
+           'indigo', 'purple', 'pink' ];
+
+alert( rainbow.indexOf('purple') );
+</pre>
+
+<p>
+<button class="sample" onclick="rainbow = [ 'red', 'orange', 'yellow', 'blue', 'indigo', 'purple', 'pink' ]; alert( rainbow.indexOf('purple') );">Test out this script now.</button>
+</p>
+
+<p>
+This should yield the index 5 (because it is currently the 6<sup>th</sup> element in the array). Let's modify the code, using this information, to assign the correct value.
+</p>
+
+<pre class="codeblock highlight">
+rainbow = [ 'red', 'orange', 'yellow', 'blue', 
+           'indigo', 'purple', 'pink' ];
+
+alert( 'before:\n' + rainbow );
+
+rainbow[ rainbow.indexOf('purple') ] = 'violet';
+
+alert( 'after:\n' + rainbow ); 
+</pre>
+
+<p>
+<button class="sample" onclick="rainbow = [ 'red', 'orange', 'yellow', 'blue', 'indigo', 'purple', 'pink' ]; alert( 'before:\n' + rainbow ); rainbow[ rainbow.indexOf('purple') ] = 'violet'; alert( 'after:\n' + rainbow );">Test out this script now.</button>
+</p>
+
+<p>
+The <span class="code highlight">.indexOf()</span> array method, applied to the <em>rainbow</em> array, looks for the value given ('purple'), and returns the index (integer) 5. This is then passed into the sqaure-brackets to locate that part of the array (list of values). The reassignment of the values is then completed.
+</p>
+
+<p>
+Note: The <span class="code highlight">.indexOf()</span> array method will return only the first index at which a match is made. There also exists an analogous <span class="code highlight">.lastIndexOf()</span> array method too. To locate additional indices at which a match is made requires more involved coding.
+</p>
+
+</section>
+
+
+
+
+<section>
+
+<h2> <span class="highlight">Inserting</span> or <span class="highlight">Deleting</span> Array Elements </h2>
+
+<p>
+Let's address the missing 'green' value. But first, we need to learn about a number of array methods. 
+</p>
+
+<table class="highlight">
+<caption> Useful Array Methods for Editing </caption>
+ <tr>
+  <td> .indexOf(&nbsp;value&nbsp;) </td>
+  <td> returns the index of the first match for the value given. </td>
+ </tr>
+ <tr>
+  <td> .lastIndexOf(&nbsp;value&nbsp;) </td>
+  <td> returns the index of the first match for the value given,<br />counting from the end. </td>
+ </tr>
+ <tr>
+  <td> .push(&nbsp;value&nbsp;) </td>
+  <td> extends the array by one element,<br />pushing the value into the <em>final</em> index. </td>
+ </tr>
+ <tr>
+  <td> .pop(&nbsp;) </td>
+  <td> reduces the array by one element,<br />removing the value from the <em>final</em> index. </td>
+ </tr>
+ <tr>
+  <td> .unshift(&nbsp;value&nbsp;) </td>
+  <td> extends the array by one element,<br />pushing the value into the <em>first</em> index. </td>
+ </tr>
+ <tr>
+  <td> .shift(&nbsp;) </td>
+  <td> reduces the array by one element,<br />removing the value from the <em>first</em> index. </td>
+ </tr>
+ <tr>
+  <td> .splice(&nbsp;<em>special</em>&nbsp;) </td>
+  <td> .splice( <em>I</em>, <em>N</em>, <em>item1</em>, ..., <em>itemX</em> )<br />
+       the <em>I</em> determines the first index to eliminate elements from.<br />
+       the <em>N</em> is the number of elements, starting at <em>I</em>, to eliminate.<br />
+       then <em>index</em> inserts <em>item1</em> at index <em>I</em><br /> 
+       then <em>item2</em> is inserted at index <em>I+1</em><br /> 
+       then <em>item3</em> is inserted at index <em>I+2</em><br /> 
+       and so on until<br />
+       then <em>itemX</em> is inserted at index <em>I+X&ndash;1</em><br /> 
+       and the element formerly at index <em>I+N</em> is now at <em>I+X</em><br />
+       and the element formerly at index <em>I+N+1</em> is now at <em>I+X+1</em><br />
+       and so on.<br />
+  </td>
+ </tr>
+ <tr>
+  <td> Additional Methods </td>
+  <td> can be found at <a href="https://www.w3schools.com/jsref/jsref_obj_array.asp">w3schools</a> </td>
+ </tr>
+</table>
+
+<p>
+One would think that for a single new element a simple .insert(&nbsp;) would suffice, but alas, one must use <span class="code highlight">.splice(index,0,newValue)</span>.
+</p>
+
+<pre class="codeblock highlight">
+rainbow = [ 'red', 'orange', 'yellow', 'blue', 
+           'indigo', 'violet', 'pink' ];
+
+alert( 'before:\n' + rainbow 
+            + '\nlength: ' + rainbow.length );
+
+rainbow.splice(3,0,'green');
+
+alert( 'after:\n' + rainbow 
+           + '\nlength: ' + rainbow.length );
+</pre>
+
+<p>
+<button class="sample" onclick="rainbow = [ 'red', 'orange', 'yellow', 'blue', 'indigo', 'violet', 'pink' ]; alert( 'before:\n' + rainbow + '\nlength: ' + rainbow.length ); rainbow.splice(3,0,'green'); alert( 'after:\n' + rainbow + '\nlength: ' + rainbow.length );">Test out this script now.</button>
+</p>
+
+<p>
+Now, to delete an array element (in our case, the 'pink'). While we could exploit the fact that it is the last element of the array and just .pop(&nbsp;) it away, there are two common methods for doing this in a more generic fashion.
+</p>
+
+<p>
+Method 1: The <em>delete</em> keyword. This will eliminate the value but <em>not</em> reindex the array <em>nor</em> modify its .length value. Take note of the terminal comma in the after case. The index persists even though the value does not. This can risk conceptual errors on the part of the web developer and is therefore not recommended within good reasoning. (Had the deleted element appeared mid-array, one would have seen consecutive commas to indicated the now-undefined value.)
+</p>
+
+<pre class="codeblock highlight">
+rainbow = [ 'red', 'orange', 'yellow', 'green', 'blue', 
+           'indigo', 'violet', 'pink' ];
+
+alert( 'before:\n' + rainbow 
+            + '\nlength: ' + rainbow.length );
+
+delete rainbow[ rainbow.lastIndexOf('pink') ];
+
+alert( 'after:\n' + rainbow 
+           + '\nlength: ' + rainbow.length ); 
+</pre>
+
+<p>
+<button class="sample" onclick="rainbow = [ 'red', 'orange', 'yellow', 'green', 'blue', 'indigo', 'violet', 'pink' ]; alert( 'before:\n' + rainbow + '\nlength: ' + rainbow.length ); delete rainbow[ rainbow.lastIndexOf('pink') ];  alert( 'after:\n' + rainbow + '\nlength: ' + rainbow.length );">Test out this script now.</button>
+</p>
+
+<p>
+Method 2: Use the very same .splice(&nbsp;) method but include zero items after the set-up values. That is, <em>N</em> will be 0 and it will be the second and final argument passed to the method.
+</p>
+
+<pre class="codeblock highlight">
+rainbow = [ 'red', 'orange', 'yellow', 'green', 'blue', 
+           'indigo', 'violet', 'pink' ];
+
+alert( 'before:\n' + rainbow 
+            + '\nlength: ' + rainbow.length );
+
+rainbow.splice( rainbow.lastIndexOf('pink'), 1 );
+
+alert( 'after:\n' + rainbow 
+           + '\nlength: ' + rainbow.length ); 
+</pre>
+
+<p>
+<button class="sample" onclick="rainbow = [ 'red', 'orange', 'yellow', 'green', 'blue', 'indigo', 'violet', 'pink' ]; alert( 'before:\n' + rainbow + '\nlength: ' + rainbow.length ); rainbow.splice( rainbow.lastIndexOf('pink'), 1 ); alert( 'after:\n' + rainbow + '\nlength: ' + rainbow.length );">Test out this script now.</button>
+</p>
+
+<p>
+It is perhaps best practice to master the .splice(&nbsp;) method before worrying too much about all the other manipulations until a time when those options affect runtime in a professional web development setting.
+</p>
+
+</section>
+
+
+
+<section>
+
+<h2> A Few <span class="highlight">Cautions</span> About Arrays </h2>
+
+<ol>
+<li>
+<p>
+So far, we have only seen arrays of strings. Because one could have an arrays of integers and because non-negative integers are also used as indices, confuse can arise. For example: consider having the array [10,11,12,13,14,15,16] and then using .splice(&nbsp;) to change it to [10,11,4,5,6,7,8,15,16].
+</p>
+
+<pre class="codeblock highlight">
+numbers = [ 10,11,12,13,14,15,16 ];
+
+alert( 'before:\n' + numbers 
+            + '\nlength: ' + numbers.length );
+
+numbers.splice( 2,3,4,5,6,7,8 );
+
+alert( 'after:\n' + numbers 
+           + '\nlength: ' + numbers.length ); 
+</pre>
+
+<p>
+<button class="sample" onclick="numbers = [ 10,11,12,13,14,15,16 ]; alert( 'before:\n' + numbers + '\nlength: ' + numbers.length ); numbers.splice( 2,3,4,5,6,7,8 ); alert('after:\n' + numbers + '\nlength: ' + numbers.length );">Test out this script now.</button>
+</p>
+
+<p>
+The 2 is an array position, the 3 is the quantity of elements to be removed, and the 4, 5, 6, 7, and 8 are all new elements inserted. However, in the .splice(&nbsp;), it looks as if there will be a full sequence from 2 through 8.
+</p>
+</li>
+<li>
+<p>
+Legacy JavaScript/ECMA has an array constructor (<span class="code highlight">new Array( )</span>). When the constructor is given two or more values, it simply builds an array with those elements in order. However, when the constructor is given a single positive integer, it creates an array with that length and every element is undefined; It does not create an array consisting of only one element whose value is that integer.
+</p>
+
+<pre class="codeblock highlight">
+one = new Array(5,10);
+two = new Array(5);
+
+alert( 'new Array(5,10): ' + one + ' has length: ' + one.length 
+   + '\nnew Array(5): ' + two + ' has length: ' + two.length );
+</pre>
+
+<p>
+<button class="sample" onclick="one = new Array(5,10); two = new Array(5); alert( 'new Array(5,10): ' + one + ' has length: ' + one.length + '\nnew Array(5): ' + two + ' has length: ' + two.length );">Test out this script now.</button>
+</p>
+
+<p>
+Technically it's a feature; But it acts like a bug. Do <em>not</em> use the Array(&nbsp;) constructor.
+</p>
+</li>
+<li>
+<p>
+Finally, as a separate concern, the empty string will be indistinguishable from a deleted element when a whole array is outputted in totality as a string.
+</p>
+</li>
+</ol>
+
+</section>
+
+
+
+
+
+<section>
+
+<h2> <span class="highlight">Nested</span> Arrays </h2>
+
+<p>
+Arrays are very versatile in that each and every element of the array can itself be of its own type of information. That is, one can mix and match strings, integers, floats, Booleans, Objects, and so on. This means that arrays can have other arrays as elements.
+</p>
+
+<pre class="codeblock highlight">
+// this is an empty object
+three = new Object(); 
+
+// this is an object with four defined fields
+six = { year:2020, model:'sedan', price:21589, 
+        color:'blue', list:[10,20,30] }; 
+
+strangeArray = [
+     0.123456789,
+     '1',
+     2,
+     three, 
+     [4.05, 4.15, 4.25, 4.35, 4.45, 4.55],
+     ['five A', 'five B', 'five C', 'five D', 'five E'],
+     six
+  ]; // end of strangeArray definition
+
+delete strangeArray[3];
+
+alert( 'strangeArray: ' + strangeArray
+      + '\nstrangeArray[0]: ' +  strangeArray[0]
+      + '\nstrangeArray[1]: ' +  strangeArray[1]
+      + '\nstrangeArray[2]: ' +  strangeArray[2]
+      + '\nstrangeArray[3]: ' +  strangeArray[3]
+      + '\nstrangeArray[4]: ' +  strangeArray[4]
+      + '\nstrangeArray[5]: ' +  strangeArray[5]
+      + '\nstrangeArray[6]: ' +  strangeArray[6]
+  ); // end alert
+
+alert( '\nstrangeArray[4][0]: ' +  strangeArray[4][0]
+     + '\nstrangeArray[4][1]: ' +  strangeArray[4][1]
+     + '\nstrangeArray[4][2]: ' +  strangeArray[4][2]
+     + '\nstrangeArray[4][3]: ' +  strangeArray[4][3]
+     + '\nstrangeArray[4][4]: ' +  strangeArray[4][4]
+     + '\nstrangeArray[4][5]: ' +  strangeArray[4][5]
+     + '\nstrangeArray[4][6]: ' +  strangeArray[4][6]
+  ); // end alert 
+
+alert( '\nstrangeArray[6].year: ' +  strangeArray[6].year 
+     + '\nstrangeArray[6].model: ' +  strangeArray[6].model
+     + '\nstrangeArray[6].price: ' +  strangeArray[6].price
+     + '\nstrangeArray[6].color: ' +  strangeArray[6].color
+     + '\nstrangeArray[6].list: ' +  strangeArray[6].list
+     + '\nstrangeArray[6].list[2]: ' +  strangeArray[6].list[2]
+     + '\nstrangeArray[6][0]: ' +  strangeArray[6][0]
+  ); // end alert 
+</pre>
+
+<p>
+<button class="sample" onclick="three = new Object(); six = { year:2020, model:'sedan', price:21589, color:'blue', list:[10,20,30] }; strangeArray = [ 0.123456789, '1', 2, three, [ 4.05, 4.15, 4.25, 4.35, 4.45, 4.55 ], [ 'five A', 'five B', 'five C', 'five D', 'five E' ], six ]; delete strangeArray[3]; alert( 'strangeArray: ' + strangeArray + '\nstrangeArray[0]: ' +  strangeArray[0] + '\nstrangeArray[1]: ' +  strangeArray[1] + '\nstrangeArray[2]: ' +  strangeArray[2] + '\nstrangeArray[3]: ' +  strangeArray[3] + '\nstrangeArray[4]: ' +  strangeArray[4] + '\nstrangeArray[5]: ' +  strangeArray[5] + '\nstrangeArray[6]: ' +  strangeArray[6]); alert( '\nstrangeArray[4][0]: ' +  strangeArray[4][0] + '\nstrangeArray[4][1]: ' +  strangeArray[4][1] + '\nstrangeArray[4][2]: ' + strangeArray[4][2] + '\nstrangeArray[4][3]: ' +  strangeArray[4][3] + '\nstrangeArray[4][4]: ' +  strangeArray[4][4] + '\nstrangeArray[4][5]: ' +  strangeArray[4][5] + '\nstrangeArray[4][6]: ' +  strangeArray[4][6] ); alert('\nstrangeArray[6].year: ' +  strangeArray[6].year + '\nstrangeArray[6].model: ' +  strangeArray[6].model + '\nstrangeArray[6].price: ' +  strangeArray[6].price + '\nstrangeArray[6].color: ' +  strangeArray[6].color + '\nstrangeArray[6].list: ' +  strangeArray[6].list + '\nstrangeArray[6].list[2]: ' +  strangeArray[6].list[2] + '\nstrangeArray[6][0]: ' +  strangeArray[6][0]);">Test out this script now.</button>
+</p>
+
+<p>
+In this example, the <em>strangeArray</em> is built out of a variety of data types. Note that each element needs to exist at the time of array assignment. It is perfectly fine that <em>strangeArray[3]</em> was deleted after-the-fact. Note that when the entire array is alerted, the nuances of multidimensional arrays gets lost. Also note that the object, which does have its own fields of information, one of which was itself an array, is only shown as a generic [object Object] when referenced as a whole.
+</p>
+
+<p>
+Note that to access elements that are in arrays inside of the <em>strangeArray</em> will have multiple sets of square-brackets. In a similar vein, fields of objects cannot be accessed this way. Attempts to access elements that do not have corresponding indexes will be listed as undefined. The same is true of non-existent fields of objects. Pay attention to accessing an element within an array inside of an object inside of an array: (That was the <em>strangeArray[6].list[2]</em> example. Read this as <q>The element at index 2 of the list field of the element at index 6 of the strange array</q>.)
+</p>
+
+</section>
+
+
+
+
+
+
+
+
+<section>
+<h2> This Week's Assignment(s): </h2>
+
+<ol>
+<li>
+Individual Built-It Task (iBIT): Start with the following array [50,45,40,35,30,25,20] (also see code below). Use array methods (without directly using the assignment operator) to modify the array (similar to what was done above) so that it becomes [50,55,45,44,43,42,41,40,30,20,60,65]. Alert the array to demonstrate that it works.
+<pre class="codeblock highlight" style="font-size:85%;">
+// starting array
+task1 = [ 50, 45, 40, 35, 30, 25, 20 ]; 
+
+/* YOUR CODE GOES HERE */
+
+// this should alert [50, 55, 45, 44, 43, 42, 41, 40, 30, 20, 60, 65 ]
+alert( task1 );
+</pre>
+</li>
+<li>
+Group Built-It Task (gBIT): This is part one of a MULTI-PART ASSIGNMENT (with part two occurring in the loops lesson). The ultimate goal is to make a webpage generate a randomized BINGO card. That is, a 5&times;5 table of numbers with the following parameters: Items in the B column are unique numbers from 1 to 15, items in the I column are unique numbers from 16 to 30, items in the N column are unique numbers 31 to 45 (with the center square being "FREE"), items in the G column are unique numbers 46 to 60, and items in the O column are unique numbers 61 to 75. For now, just build (1) a double array that contains these specific values (24 integers and 1 string 'FREE') and (2) use javascript/ECMA to document.write(&nbsp;) the entire table, filling in the squares from the dobule-array appropriately.
+<table class="allChildrenCenter">
+ <tr>
+  <th> B </th>
+  <th> I </th>
+  <th> N </th>
+  <th> G </th>
+  <th> O </th>
+ </tr>
+ <tr>
+  <td> 5 </td>
+  <td> 30 </td>
+  <td> 34 </td>
+  <td> 56 </td>
+  <td> 71 </td>
+ </tr>
+ <tr>
+  <td> 11 </td>
+  <td> 22 </td>
+  <td> 40 </td>
+  <td> 53 </td>
+  <td> 74 </td>
+ </tr>
+ <tr>
+  <td> 8 </td>
+  <td> 13 </td>
+  <td> FREE </td>
+  <td> 47 </td>
+  <td> 66 </td>
+ </tr>
+ <tr>
+  <td> 7 </td>
+  <td> 17 </td>
+  <td> 33 </td>
+  <td> 52 </td>
+  <td> 64 </td>
+ </tr>
+ <tr>
+  <td> 2 </td>
+  <td> 19 </td>
+  <td> 38 </td>
+  <td> 57 </td>
+  <td> 61 </td>
+ </tr>
+</table>
+</li>
+<li>
+Individual Reaction Response (iRR): What are your thoughts on .splice(&nbsp;)? Imagine having an .insert(&nbsp;) method. How would you design it? How would it work? How could it go wrong? In working on the double-array grout Built-It-Task, did you design it bingo[row][column] or bingo[column][row]? Why? 
+</li>
+</ol>
+
+
+</section>
+
+<footer>
+ <script>
+    buildFooter( );
+ </script>
+</footer>
+
+</body>
+</html>

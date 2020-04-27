@@ -1,0 +1,36 @@
+
+<!doctype html>
+<html lang="en" class="gr__blackboard_albany_edu"><head><meta charset="utf=8">
+ <title> Lesson 10 </title>
+ <link rel="stylesheet" href="lesson10-gBit.css"> <!-- Changed file name -->
+ <script>
+     var counter = 0;
+    function clear_Cell(id) {  
+      counter++;
+
+      if(counter == 2){
+          var blank = document.getElementById(id).style.backgroundImage ="url(\'blank.png\')"
+          counter = 0;
+        }
+        else{
+            var play = document.getElementById(id).style.backgroundImage ="url(\'x.png\')"
+        } 
+ 
+    } 
+    </script> 
+ </head>
+<body data-gr-c-s-loaded="true">
+
+<div id="cell-r1-c1" onclick=clear_Cell(id) ondblclick="this.style.backgroundImage='url(\'o.png\')';" >  </div>
+<div id="cell-r1-c2" onclick=clear_Cell(id) ondblclick="this.style.backgroundImage='url(\'o.png\')';">  </div>
+<div id="cell-r1-c3" onclick=clear_Cell(id) ondblclick="this.style.backgroundImage='url(\'o.png\')';">  </div>
+<br>
+<div id="cell-r2-c1" onclick=clear_Cell(id) ondblclick="this.style.backgroundImage='url(\'o.png\')';">  </div>
+<div id="cell-r2-c2" onclick=clear_Cell(id) ondblclick="this.style.backgroundImage='url(\'o.png\')';">  </div>
+<div id="cell-r2-c3" onclick=clear_Cell(id) ondblclick="this.style.backgroundImage='url(\'o.png\')';">  </div>
+<br>
+<div id="cell-r3-c1" onclick=clear_Cell(id) ondblclick="this.style.backgroundImage='url(\'o.png\')';">  </div>
+<div id="cell-r3-c2" onclick=clear_Cell(id) ondblclick="this.style.backgroundImage='url(\'o.png\')';">  </div>
+<div id="cell-r3-c3" onclick=clear_Cell(id) ondblclick="this.style.backgroundImage='url(\'o.png\')';">  </div>
+
+</body></html>

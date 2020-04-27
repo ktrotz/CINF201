@@ -1,0 +1,527 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  
+  <!-- REQUIRED THREE ELEMENTS BELOW -->
+  <title id="theTitle"> </title>
+  <link href="standardLesson.css" rel="stylesheet" />
+  <script src="standardLesson.js"> </script>
+  <!-- REQUIRED THREE ELEMENTS ABOVE -->
+ 
+</head>
+<body>
+
+<header> 
+ <script> 	
+    buildHeader( );
+ </script>
+</header>
+
+<nav>
+ <script>
+    buildNavigationMenu( );
+ </script>
+<div id="tableOfContents"> </div> <!-- TO BE CONSTRUCTED BY END DOM SCRIPT -->
+</nav> 
+
+<section>
+<h2> Introduction to the <span class="highlight">Document Object Model</span> </h2>
+
+<p>
+The <em>Document Object Model <abbr title="Document Object Model">DOM</abbr></em> is essentially a tree model of nested HTML elements and associated HTML attributes, CSS styles, and inner content. As with JavaScript/ECMA objects, there are methods and values associated with every DOM object. Furthermore, the genealogical vocabulary of HTML elements (i.e., ancestor, parent, child, descendant) takes on significant importance in examining the DOM as a whole.
+</p>
+
+</section>
+
+
+
+
+
+<section>
+
+<h2> Basics of Accessing the DOM </h2>
+
+<p>
+Below is a table of frequently used DOM methods.
+</p>
+
+<table class="highlight" style="font-size:80%;">
+<caption> Finding (HTML) Element Objects </caption>
+ <tr>
+  <th> Method </th>
+  <th> Description </th>
+ </tr>
+ <tr>
+  <td> <span class="code highlight">document.getElementById(<em>id</em>)</span> </td>
+  <td> Generates a unique reference to an (HTML) element by the value of its <span class="code highlight">id=</span> attribute. </td>
+ </tr>
+ <tr>
+  <td> <span class="code highlight">document.getElementsByTagName(<em>element</em>)</span> </td>
+  <td> Generates an array of references to all (HTML) elements of the specified element type. (This is usually linear from top to bottom of the webpage.) </td>
+ </tr>
+ <tr>
+  <td> <span class="code highlight">document.getElementsByClassName(<em>class</em>)</span> </td>
+  <td> Generates an array of references to all (HTML) elements that have the specified CSS class. (This may behave in unexpected ways if elements have multiple style classes simultaneously applied.) </td>
+ </tr>
+ <tr>
+  <td> <span class="code highlight">document.write(<em>someHTML</em>)</span> </td>
+  <td> Writes some HTML to the document.<br /> 
+  <span class="blue">(Note: ONLY USE DURING INITIAL DOCUMENT LOAD.)</span><br />
+  <span class="red">(Later use will overwrite the entire document.)</span> </td>
+ </tr>
+ <tr>
+  <td> <span class="code highlight">document.querySelectorAll(<em>classSelector</em>)</span> </td>
+  <td> Generates an array of references to all (HTML) elements that have the specified CSS class selection, which includes selection by #id. (Note: compound selections can be used as parameters here.) </td>
+ </tr>
+ <tr>
+  <td> <span class="code highlight">document.querySelector(<em>classSelector</em>)</span> </td>
+  <td> Selects only the first (HTML) element that has the specified CSS class selection, which includes selection by #id. (Note: compound selections can be used as parameters here.) </td>
+ </tr>
+</table>
+
+<p>
+Note: the assumption for this course is that the markup language is HTML, but in actuality the DOM is designed to work with any well-formed markup language.
+</p>
+
+<table class="highlight" style="font-size:80%;">
+<caption> Element-Level Editors </caption>
+ <tr>
+  <th> Feature </th>
+  <th> Description </th>
+ </tr>
+ <tr>
+  <td> Property:<br /> <span class="code highlight"><em>element</em>.innerText</span> </td>
+  <td> Gets or sets the text inside of an element, only re-rendering the DOM if elements were destroyed. </td>
+ </tr>
+ <tr>
+  <td> Property:<br /> <span class="code highlight"><em>element</em>.innerHTML</span> </td>
+  <td> Gets or sets the HTML inside of an element, always re-rendering the DOM regardless of element nodes being built or destroyed. </td>
+ </tr>
+ <tr>
+  <td> Property:<br /> <span class="code highlight"><em>element.attribute</em></span> </td>
+  <td> Gets or sets the HTML attribute of an element.<br />
+ (Note: <span class="code highlight">class=</span> uses the <span class="code highlight">.className</span> property.) </td>
+ </tr>
+ <tr>
+  <td> Method:<br /> <span class="code highlight"><em>element</em>.getAttribute(<span class="code highlight"><em>attribute</em>)</span> </td>
+  <td> Gets the HTML attribute of an element. </td>
+ </tr>
+ <tr>
+ <tr>
+  <td> Method:<br /> <span class="code highlight"><em>element</em>.setAttribute(<span class="code highlight"><em>attribute,&nbsp;value</em>)</span> </td>
+  <td> Sets the HTML attribute of an element. </td>
+ </tr>
+ <tr>
+  <td> Property:<br /> <span class="code highlight"><em>element</em>.style.<span class="code highlight"><em>CSSProperty</em></span> </td>
+  <td> Gets or sets one CSS style value of an HTML element.</td>
+ </tr>
+</table>
+
+<p>
+One of the more intersting uses of assignment to an attribute is that one can get or set an HTML event handler. For example:
+</p>
+
+<pre class="codeblock highlight">
+&lt;button 
+  id="one"
+  onclick="
+     two.innerHTML = 'This button is now active!';
+     newButtonText = 'Ta da! It works!';
+     two.onclick = function(){alert(newButtonText);}"&gt;
+  Activate the next button.
+&lt;/button&gt;
+
+&lt;button id="two"&gt; This button doesn't work yet. &lt;/button&gt;
+
+&lt;button 
+  id="three"
+  onclick="
+     two.innerHTML = 'This button is now inactive!';
+     newButtonText = 'This button no longer works!';
+     two.onclick = function(){;}"&gt;
+  Deactivate the previous button.
+&lt;/button&gt;
+</pre>
+
+<button 
+  class="sample" 
+  id="one"
+  onclick="
+     two.innerHTML = 'This button is now active!';
+     newButtonText = 'Ta da! It works!';
+     two.onclick = function(){alert(newButtonText);}"> 
+  Activate the next button.
+</button>
+<button class="sample" id="two"> This button doesn't work yet. </button>
+<button 
+  class="sample" 
+  id="three"
+  onclick="
+     two.innerHTML = 'This button is now inactive!';
+     newButtonText = 'This button no longer works!';
+     two.onclick = function(){;}"> 
+  Deactivate the previous button.
+</button>
+
+</section>
+
+
+
+
+<section>
+
+<h2> DOM-based <span class="highlight">Style</span> Declarations </h2>
+
+<p>
+To change a single style, use the following format. Note: :
+</p>
+
+<pre class="codeblock highlight" id="four">
+&lt;button onclick="
+   four.style.backgroundColor = 'rgba(255,255,255,0.4)'; 
+   four.style.backgroundImage = '';"&gt; Translucent White &lt;/button&gt;
+
+&lt;button onclick="
+   four.style.backgroundColor = 'skyblue'; 
+   four.style.backgroundImage = '';"&gt; Skyblue &lt;/button&gt;
+
+&lt;button onclick="
+   four.style.backgroundColor = 'hotpink'; 
+   four.style.backgroundImage = '';"&gt; Hotpink &lt;/button&gt;
+
+&lt;button onclick="
+   four.style.backgroundColor = 'rgba(255,255,0,0.6)'; 
+   four.style.backgroundImage = '';"&gt; Yellow &lt;/button&gt;
+
+&lt;button onclick="
+   four.style.backgroundImage = 
+   'linear-gradient(#ee6666, #8899ee)';"&gt; 
+   Gradient Vertical &lt;/button&gt;
+
+&lt;button onclick="four.style.backgroundImage = 
+   'linear-gradient(to right, yellow, purple)';"&gt;
+   Gradient Horizontal &lt;/button&gt;
+</pre>
+
+<p>
+<button class="sample" onclick="four.style.backgroundColor = 'rgba(255,255,255,0.4)'; four.style.backgroundImage = '';"> Translucent White </button>
+<button class="sample" onclick="four.style.backgroundColor = 'skyblue'; xfour.style.backgroundImage = '';"> Skyblue </button>
+<button class="sample" onclick="four.style.backgroundColor = 'hotpink'; four.style.backgroundImage = '';"> Hotpink </button>
+<button class="sample" onclick="four.style.backgroundColor = 'rgba(255,255,0,0.6)'; four.style.backgroundImage = '';"> Yellow </button>
+<button class="sample" onclick="four.style.backgroundImage = 'linear-gradient(#e66465, #9198e5)';"> Gradient Vertical </button>
+<button class="sample" onclick="four.style.backgroundImage = 'linear-gradient(to right, yellow, purple)';"> Gradient Horizontal </button>
+</p>
+
+<p>
+Note that the <span class="code highlight">.backgroundImage</span> needs to be undone with an empty string in order for the <span class="code highlight">.backgroundColor</span> to be seen. This is a feature of the CSS, not the DOM.
+</p>
+
+</section>
+
+
+
+
+<section>
+
+<h2> Visualizing <span class="highlight">Nodes</span> in the DOM </h2>
+
+<pre class="codeblock highlight">
+&lt;!doctype html&gt;
+&lt;html&gt;
+&lt;head&gt;
+  &lt;meta charset=&quot;utf-8&quot; /&gt;
+  &lt;title&gt; Sample DOM &lt;/title&gt; 
+&lt;/head&gt;
+&lt;body&gt;
+ &lt;p&gt; Lorem ipsum..&lt;/p&gt;
+ &lt;p&gt; More lorem...&lt;/p&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+</pre>
+
+<p>
+Below is the DOM node map of the code given above. <br />
+<img class="codeblock highlight" src="DOM-sample.png" alt="Node Map of the Code Above" style="width:99%;" />
+</p>
+
+<p>
+According to the W3C HTML DOM standard, everything in an HTML document is a node:
+</p>
+
+<ul>
+ <li> The whole document is the top node </li>
+ <li> Every HTML element is an element node </li>
+ <li> Every HTML attribute was an element node. (This is deprecated. It now behaves like other NodeValues, such as <span class="code highlight">Text</span> or <span class="code highlight">Comment</span>. Previous DOM specifications had originally granted attributes and comments their own nodes instead of organizing as properties of an <span class="code highlight">HTMLElement</span>.) </li>
+</ul>
+
+<p>
+The modification of the DOM standard better aligns the relationship between an element and its properties. That is, <span class="code highlight">NodeValues</span> should be <em>properties</em> of their elements.
+</p>
+
+<p>
+In our example from above:
+</p>
+
+<ul>
+ <li> Root element: <span class="code highlight">&lt;html&gt;</span> has no parents. </li>
+ <li> <span class="code highlight">&lt;html&gt;</span> is the parent of <span class="code highlight">&lt;head&gt;</span> and of <span class="code highlight">&lt;body&gt;</span>. </li>
+ <li> <span class="code highlight">&lt;head&gt;</span> is the <span class="code highlight">.firstChild</span> of <span class="code highlight">&lt;html&gt;</span>. </li>
+ <li> Or, restated: <span class="code highlight">&lt;head&gt;</span> is the <span class="code highlight">.childNodes[0]</span> of <span class="code highlight">&lt;html&gt;</span>. </li>
+ <li> <span class="code highlight">&lt;body&gt;</span> (here) is the <span class="code highlight">.lastChild</span> of <span class="code highlight">&lt;html&gt;</span>. </li>
+ <li> Or, restated: <span class="code highlight">&lt;head&gt;</span> is the <span class="code highlight">.childNodes[1]</span> of <span class="code highlight">&lt;html&gt;</span>. </li>
+ <li> <span class="code highlight">&lt;head&gt;</span> and <span class="code highlight">&lt;body&gt;</span> are sibling element nodes.</li>
+ <li> <span class="code highlight">&lt;head&gt;</span> is the <span class="code highlight">.previousSibling</span> of <span class="code highlight">&lt;body&gt;</span>.</li>
+ <li> <span class="code highlight">&lt;body&gt;</span> is the <span class="code highlight">.nextSibling</span> of <span class="code highlight">&lt;head&gt;</span>.</li>
+</ul>
+
+<p>
+The <span class="code highlight">.innerHTML</span> references the entire tree below a given element node. (Note: <span class="code highlight">.innerText</span> would reference only the text &ndash; and might not behave as anticipated if there are children elements contained within.) As the DOM standard moves away from attribute nodes and comment nodes, there will be a shift away from legacy coding such as <span class="code highlight">.firstChild.nodeValue</span> being used instead of the more descriptive and accurate <span class="code highlight">.innerHTML</span>.
+</p>
+
+</section>
+
+
+<section>
+
+<h2> Some <span class="highlight">Technical Specs</span> of HTML Nodes </h2>
+
+<p>
+The main navigations between nodes are as follows:
+</p>
+
+<ul>
+ <li> <span class="code highlight">.parentNode</span> </li>
+ <li> <span class="code highlight">.childNodes[<em>nodenumber</em>]</span> </li>
+ <li> <span class="code highlight">.firstChild</span> </li>
+ <li> <span class="code highlight">.lastChild</span> </li>
+ <li> <span class="code highlight">.nextSibling</span> </li>
+ <li> <span class="code highlight">.previousSibling</span> </li>
+</ul>
+
+</section>
+
+
+<section>
+
+<h2> Looking In Close At the DOM </h2>
+
+<p id="tester" style="display: none;">
+This is the text inside of the <em>paragraph</em> in this example.
+</p>
+
+<pre class="codeblock highlight">
+&lt;p id=&quot;tester&quot;&gt;
+This is the text inside of the &lt;em&gt;paragraph&lt;/em&gt; in this example.
+&lt;/p&gt;
+</pre>
+
+<pre class="codeblock highlight">
+for ( x in tester.childNodes )
+ {
+    output = 'x: ' + x;
+    output += '\ntester.childNodes[' + x + ']: ';
+    output += tester.childNodes[x];
+    output += '\ntester.childNodes[' + x + '].nodeValue: '; 
+    output += tester.childNodes[x].nodeValue;
+    alert( output );
+
+ } // end for tester.childNodes
+</pre>
+
+<p>
+Notice that there are first enumerated nodes. They are composed of the text nodes and children elements. Then, nodes are named: <span class="code highlight">length</span>, <span class="code highlight">item(&nbsp;)</span>, <span class="code highlight">entries(&nbsp;)</span>, <span class="code highlight">forEach(&nbsp;)</span>, and <span class="code highlight">keys(&nbsp;)</span>, and <span class="code highlight">values(&nbsp;)</span>. The length property and the named functions are inherited from the class of objects that are <span class="code highlight">HTMLElement</span>.
+</p>
+
+<p>
+So, there's actually a lot of programming that goes on in the DOM that the HTML markup language sets into motion, integrating in the CSS and any JavaScript/ECMA that the web designer chooses to include. Although really digging into this is beyond the scope of this course, one can deep into the deep end of the pool at <a href="https://dom.spec.whatwg.org/">the official DOM living standard</a>.
+</p>
+
+</section>
+
+
+
+
+<section>
+
+<h2> So, What <span class="highlight">Should</span> I Know About the DOM? </h2>
+
+<p>
+Knowing how to read a DOM statement is important. Recall that this was already covered during CSS style swaps. See below for an example.
+</p>
+
+<pre class="codeblock highlight">
+changeMe.style.backgroundColor = 'skyblue';
+</pre>
+
+<p>
+One should practice reading this right-to-left while learning it, but also one should eventually learn to read it, <em>without subvocalizing it</em>, left-to-right. Here, the vocalized right-to-left translation would have inserted whichever prepositions feel natural as well as any classifier that vastly clarifies what something is. For the example above:
+</p>
+
+<p>
+<q>The <em>string</em> &apos;skyblue&apos; is assigned to the background color <em>of</em> the style <em>of</em> the object identified by the <em>string</em> &apos;changeMe&apos;.</q>
+</p>
+
+<p>
+Knowing how to write a simple DOM statement to change content is important too. This is done very similarly to the above example:
+</p>
+
+<pre class="codeblock highlight">
+newContent = 'This is the text inside of the &lt;em&gt;paragraph&lt;/em&gt; ';
+newContent += 'in this example.';
+
+tester.innerHTML = newContent;
+</pre>
+
+<p id="tester2"> 
+Imagine that this is the <q>tester2</q> paragraph.
+</p>
+
+<p>
+<button class="sample" onclick="tester2.innerHTML = 'This is the text inside of the <em>paragraph</em> in this example.';"> Test out this DOM now.</button>
+<button class="sample" onclick="tester2.innerHTML = 'Imagine that this is the <q>tester2</q> paragraph.';"> Return to original text.</button>
+<button class="sample" onclick="for ( x in tester2.childNodes ) { output = 'x: ' + x;
+output += '\ntester2.childNodes[' + x + ']: ';
+output += tester2.childNodes[x];
+output += '\ntester2.childNodes[' + x + '].nodeValue: '; 
+output += tester2.childNodes[x].nodeValue;
+alert( output ); }"> Check the nodes now.</button>
+</p>
+
+</section>
+
+
+
+
+<section>
+
+<h2> What <span class="highlight">Should Be The Next Stuff</span> I Know About the DOM?</h2>
+
+<p>
+Basically, learning to navigate up, down, left, and right through the Document Object Model. It's tricky business because the programmer has to conform to it instead of it being the other way around. And while it is internally consistent, it is not necessarily intuitive to a first-time web programmer.
+</p>
+
+<p>
+Now, notice that both versions of the paragraph in the previous seciton contain in child element. So, how would we access this element? It's simple. Use the current element with the <span class="code highlgiht">.childNodes[<em>x</em>].innerHTML</span>
+</p>
+
+<p>
+<button class="sample" onclick="for ( x in tester2.childNodes ) { output = 'x: ' + x;
+output += '\ntester2.childNodes[' + x + ']: ';
+output += tester2.childNodes[x];
+output += '\ntester2.childNodes[' + x + '].nodeValue: '; 
+output += tester2.childNodes[x].nodeValue;
+output += '\ntester2.childNodes[' + x + '].innerHTML: ';
+output += tester2.childNodes[x].innerHTML;
+alert( output ); }"> Now check with .childNodes[x].innerHTML</button>
+</p>
+
+<pre class="codeblock highlight">
+output = 'tester2.parentNode.nodeName: ';
+output += tester2.parentNode.nodeName + '\n';
+output += 'tester2.parentNode.innerHTML: ';
+output += tester2.parentNode.innerHTML + '\n';
+alert( output );
+</pre>
+
+<p>
+<button class="sample" onclick="
+output = 'tester2.parentNode.nodeName: ';
+output += tester2.parentNode.nodeName + '\n';
+output += 'tester2.parentNode.innerHTML: ';
+output += tester2.parentNode.innerHTML + '\n';
+alert( output );"> Now check out the .parentNode</button>
+</p>
+
+<p>
+Note: using <span class="code highlight">.previousSibling</span> and <span class="code highlight">.nextSibling</span> are not nearly as simple. 
+</p>
+
+<pre class="codeblock highlight">
+output = 'tester2.nextSibling.nodeName: ';
+output += tester2.nextSibling.nodeName + '\n';
+output += 'tester2.nextSibling.innerHTML: ';
+output += tester2.nextSibling.innerHTML + '\n';
+alert( output );
+</pre>
+
+<p>
+<button class="sample" onclick="
+output = 'tester2.nextSibling.nodeName: ';
+output += tester2.nextSibling.nodeName + '\n';
+output += 'tester2.nextSibling.innerHTML: ';
+output += tester2.nextSibling.innerHTML + '\n';
+alert( output );"> Now check out the .nextSibling</button>
+</p>
+
+<p>
+That looks fairly broken. Ever attempting to peek inside of <span class="code highlight">.nodeValue</span>, <span class="code highlight">.innerText</span>, or <span class="code highlight">.firstChild</span> yields nothing useful. So, what's going on here? Well, there's some blank space between the elements, so it is given its own node, and of course JavaScript doesn't do that well to indicate that it is displaying blank space. As such, try this:
+</p>
+
+<pre class="codeblock highlight">
+output = 'tester2.nextSibling.nextSibling.nodeName: ';
+output += tester2.nextSibling.nextSibling.nodeName + '\n';
+output += 'tester2.nextSibling.nextSibling.innerHTML: ';
+output += tester2.nextSibling.nextSibling.innerHTML + '\n';
+alert( output );
+</pre>
+
+<p>
+<button class="sample" onclick="
+output = 'tester2.nextSibling.nextSibling.nodeName: ';
+output += tester2.nextSibling.nextSibling.nodeName + '\n';
+output += 'tester2.nextSibling.nextSibling.innerHTML: ';
+output += tester2.nextSibling.nextSibling.innerHTML + '\n';
+alert( output );"> Now check out the .nextSibling</button>
+</p>
+
+<p>
+Oh! Two siblings after the <q>tester2</q> element (and one sibling after the blank space) contains actual stuff that one can see. A great diagnostic tool when the there seem to be no visible content (but that a <span class="code highlight">#text</span> .nodeName is found is to actually go up to the .parentNode level, and then set up a FOR-IN loop for each of its children. Make sure to display a variety of properties of each of these children to see how each one is set up.
+</p>
+
+</section>
+
+
+
+
+
+<section>
+<h2> This Week's Assignment(s): </h2>
+
+<ol>
+<li>
+Individual Built-It Task (iBIT): Explore. What happens when you have something like:
+<pre class="codeblock highlight">
+&lt;p id=&quot;myParagraph&quot;&gt;
+Testing this paragraph
+&lt;/p&gt;
+
+&lt;button onclick=&quot;
+  myParagraph.innerHTML=&apos;Look at me! I\&apos;m new&apos;;
+  myParagraph.id=&apos;newName&apos;;
+  myParagraph.innerHTML=&apos;This is even newer!&apos;;
+  alert( newName.innerHTML ); &quot;&gt;
+Click here for changes
+&lt;/button&gt;
+</pre>
+Why doesn't the <span class="code highlgiht">alert(&nbsp;);</span> work? What does this code do to the DOM that breaks it?
+</li>
+<li>
+Group Built-It Task (gBIT): Have a number of elements with unique <span class="code highlight">id=</span> values visible to the user. Build a <span class="code highlight">&lt;button&gt;</span> element that prompts the user three times. The user will select one of the <span class="code highlight">id=</span> values, then one of the style properties that you provide (ex: background color, font size, etc), the the new style value.
+</li>
+<li>
+Individual Reaction Response (iRR): How is the dot operator from JavaScript/ECMA alike to the dot operator in the DOM (or in any other obkect-oriented language)? How is it different? How did you arrive at this answer?
+</li>
+</ol>
+
+
+</section>
+
+<footer>
+ <script>
+    buildFooter( );
+ </script>
+</footer>
+
+</body>
+</html>

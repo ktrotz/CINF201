@@ -1,0 +1,74 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  
+  <!-- REQUIRED THREE ELEMENTS BELOW -->
+  <title id="theTitle"> </title>
+  <link href="standardLesson.css" rel="stylesheet" />
+  <script src="standardLesson.js"> </script>
+  <!-- REQUIRED THREE ELEMENTS ABOVE -->
+ 
+</head>
+<body>
+
+
+
+<section>
+
+<h2> Individual or Group Built-It Task (Your Choice): </h2>
+
+<p>
+    Design a short trivia game (3-5 questions). 
+    Keep track of a player's score. Report the final score. 
+    Have at least 3 different final messages ('Better luck next time', 'Good job', and 'PERFECT SCORE!').
+</p>
+
+<p>
+<button class="sample" onclick="
+    alert('Welcome to Trivia!');
+    alert('Here is 5 questions. Answer correctly to get a point.');
+    score = 0;
+
+    //Questions
+    ans = prompt('Babe Ruth is associated with which sport?');
+    if(ans == 'baseball' || ans == 'Baseball')
+        score++;
+
+    ans = prompt('Spinach is high in which mineral?');
+    if(ans == 'iron' || ans == 'Iron')
+        score++;
+
+    ans = prompt('What is the chemical symbol for Hydrogen');
+    if(ans == 'h' || ans == 'H')
+        score++;
+
+    ans = prompt('Traditionally, how many Wonders of the World are there?');
+    if(ans == 'seven' || ans == 'Seven' || ans == '7')
+        score++;
+
+    ans = prompt('Which is the tallest mammal?');
+    if(ans == 'giraffe' || ans == 'Giraffe')
+        score++;
+
+    //Score 
+    a = 'You scored ' + score + ' out of 5! \n';
+
+    if(score == 5)
+        alert(a + 'PERFECT SCORE!');
+
+    else if(score < 5 && score > 2)
+        alert(a + 'Good job');
+
+    else if(score < 2)
+        alert(a + 'Better luck next time');
+    
+    ">
+    
+    Play Trivia</button> 
+</p>
+
+</section>
+
+</body>
+</html>

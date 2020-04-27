@@ -1,0 +1,8 @@
+Project 1 is a simple website on the facts about the solar system and space. 
+
+It include a navigation bar and a drop-down menu that links to the other pages.
+
+The facts listed on the site are referenced from space-facts.com and nasa.gov 
+
+The planets category in the dropdown menu is the most detailed.
+

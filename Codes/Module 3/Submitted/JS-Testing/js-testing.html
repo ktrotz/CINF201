@@ -1,0 +1,356 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  
+  <!-- REQUIRED THREE ELEMENTS BELOW -->
+  <title id="theTitle"> </title>
+  <link href="standardLesson.css" rel="stylesheet" />
+  <script src="standardLesson.js"> </script>
+  <!-- REQUIRED THREE ELEMENTS ABOVE -->
+ 
+</head>
+<body>
+
+<header> 
+ <script>
+    buildHeader( );
+ </script>
+</header>
+
+<nav>
+ <script>
+    buildNavigationMenu( );
+ </script>
+<div id="tableOfContents"> </div> <!-- TO BE CONSTRUCTED BY END DOM SCRIPT -->
+</nav> 
+
+<section>
+<h2> <span class="highlight">Best Practices:</span> Building JavaScript/ECMA </h2>
+
+<ul>
+<li>
+The very first thing that one should do when building any <span class="code highlight">&lt;script&gt;</span> is to frequently save backup copies of the code. This way, if the code goes sideways and cannot be recovered, only the mots recent few changes need to be rebuilt.
+</li>
+<li>
+As one is building script, build only one or two things at a time. This way, if something goes wrong, it is likely to have happened in creating those few lines.
+</li>
+<li>
+Use comments to temporarily turn off a block of script. Then, reintroduce its code a little at a time. This could mean starting at the top of the a block and working down or it could possibly mean starting on the outside working inward. Always be careful to mind to match the openings to the closings.
+  <ol>
+  <li>
+  A closed comment is made by placing it in-between <span class="code highlight">/*</span> and <span class="code highlight">*/</span>.
+  </li>
+  <li>
+  One can also comment out a single line by placing a <span class="code highlight">//</span> in front of it.
+  </li>
+  </ol>
+</li>
+<li>
+When planning out a script, think early about reusability. Should something be a function because it will get a lot of uses? Should something be an array of values that are similar
+</li>
+</ul>
+</section>
+
+
+
+
+
+<section>
+<h2> <span class="highlight">Exemplar</span> of Testing The Code </h2>
+
+<p>
+Let's say that the goal of the script is to have the user enter five numbers and then to report their arithmetic mean. Plan it out. For example: Will we need to maintain each of the five numbers for later use?
+</p>
+
+<p>
+So, let's now make some intentional mistakes. Let's go looking for trouble to learn how to get out of trouble.
+</p>
+
+<h3> Version 0.1: </h3>
+
+</p>
+<pre class="codeblock highlight">
+&lt;script&gt;
+
+number1 = prompt(&apos;Enter your first number:&apos;);
+
+&lt;/script&gt;
+</pre>
+
+<p>
+<button class="sample" onclick="prompt('Enter your first number:');"> Test out this script so far.</button>
+</p>
+
+<p>
+So far, so good, it seems.
+</p>
+
+<h3> Version 0.2: </h3>
+
+<pre class="codeblock highlight">
+&lt;script&gt;
+
+number1 = prompt(&apos;Enter your first number:&apos;);
+number2 = prompt(&apos;Enter your second number:&apos;);
+number3 = prompt(&apos;Enter your third number:&apos;);
+number4 = prompt(&apos;Enter your fourth number:&apos;);
+number5 = prompt(&apos;Enter your fifth number:&apos;);
+
+alert( 'number1 + number2 + number3 + number4 + number5 );
+
+&lt;/script&gt;
+</pre>
+
+<p>
+<button class="sample" onclick="alert('Yup. Nothing works because...\n...it\'s missing one little apostrophe on the alert( ) line.\n\nSo how would we find this out if just inspecting the code didn\'t pan out?');">Test out this script now.</button>
+</p>
+
+<p>
+And we see nothing working in the script now. But more importantly, there is glaring error that in hiding in plain sight. So, let's comment out some of these new lines. Use <span class="code highlight">/*</span> and <span class="code highlight">*/</span> to isolate blocks of code. If the code runs, then the mistakes are still commented out. If the code doesn't run, the mistake is active script. Divide and conquer.
+</p>
+
+
+<h3> Version 0.3: </h3>
+
+<pre class="codeblock highlight">
+&lt;script&gt;
+
+number1 = prompt(&apos;Enter your first number:&apos;);
+number2 = prompt(&apos;Enter your second number:&apos;);
+number3 = prompt(&apos;Enter your third number:&apos;);
+/*<em> 
+number4 = prompt(&apos;Enter your fourth number:&apos;);
+number5 = prompt(&apos;Enter your fifth number:&apos;);
+
+alert( 'number1 + number2 + number3 + number4 + number5 ); 
+</em>*/
+
+&lt;/script&gt;
+</pre>
+
+<p>
+<button class="sample" onclick="number1 = prompt('Enter your first number:'); number2 = prompt('Enter your second number:'); number3 = prompt('Enter your third number:'); alert('Becuase this worked, the mistake is not in the first half of code.');">Test out this script now.</button><br /> 
+</p>
+
+<p>
+So far, the code runs. Therefore, the mistake in still in the commented-out part of the code. Let's reintroduce a few more lines of active code.
+</p>
+
+
+<h3> Version 0.4: </h3>
+
+<pre class="codeblock highlight">
+&lt;script&gt;
+
+number1 = prompt(&apos;Enter your first number:&apos;);
+number2 = prompt(&apos;Enter your second number:&apos;);
+number3 = prompt(&apos;Enter your third number:&apos;);
+number4 = prompt(&apos;Enter your fourth number:&apos;);
+number5 = prompt(&apos;Enter your fifth number:&apos;);
+
+/*<em>
+alert( 'number1 + number2 + number3 + number4 + number5 ); 
+</em>*/
+
+&lt;/script&gt;
+</pre>
+
+<p>
+<button class="sample" onclick="number1 = prompt('Enter your first number:'); number2 = prompt('Enter your second number:'); number3 = prompt('Enter your third number:'); number4 = prompt('Enter your fourth number:'); number5 = prompt('Enter your fifth number:');  alert('Everything active still works.\nThe mistake must be in the commented-out alert( ) line');">Test out this script now.</button>
+</p>
+
+<p>
+This still works. This guarantees that any mistake must be in the <span class="code highlight">alert(&nbsp;)</span> line, but it does not guarantee that there is only one mistake. Be careful: magicians exploit the natural human tendency to credit an outcome to a singular cause. Do not make that assumption.
+</p>
+
+<p>
+Now that the search is narrowed substantially, a careful inspection of the <span class="code highlight">alert(&nbsp;)</span> line reveals an open apostrophe without a closed apostrophe. Let's fix that.
+</p>
+
+
+
+<h3> Version 0.5: </h3>
+
+<pre class="codeblock highlight">
+&lt;script&gt;
+
+number1 = prompt(&apos;Enter your first number:&apos;);
+number2 = prompt(&apos;Enter your second number:&apos;);
+number3 = prompt(&apos;Enter your third number:&apos;);
+number4 = prompt(&apos;Enter your fourth number:&apos;);
+number5 = prompt(&apos;Enter your fifth number:&apos;);
+
+// apostrophes paired
+alert( 'number1 + number2 + number3 + number4 + number5' ); 
+
+&lt;/script&gt;
+</pre>
+
+<p>
+<button class="sample" onclick="number1 = prompt('Enter your first number:'); number2 = prompt('Enter your second number:'); number3 = prompt('Enter your third number:'); number4 = prompt('Enter your fourth number:'); number5 = prompt('Enter your fifth number:');  alert( 'number1 + number2 + number3 + number4 + number5' );">Test out this script now.</button>
+</p>
+
+<p>
+Oh, right. In our exuberance in locating how the mistake was, we forgot that single-quotes (or apostrophes) generally delimit a literal string. But this wasn't the goal. The goal was to calculate something. So, let's remove the apostrophes. </p>
+
+
+
+<h3> Version 0.6: </h3>
+
+<pre class="codeblock highlight">
+&lt;script&gt;
+
+number1 = prompt(&apos;Enter your first number:&apos;);
+number2 = prompt(&apos;Enter your second number:&apos;);
+number3 = prompt(&apos;Enter your third number:&apos;);
+number4 = prompt(&apos;Enter your fourth number:&apos;);
+number5 = prompt(&apos;Enter your fifth number:&apos;);
+
+// apostrophes REMOVED
+alert( number1 + number2 + number3 + number4 + number5 ); 
+
+&lt;/script&gt;
+</pre>
+
+<p>
+<button class="sample" onclick="number1 = prompt('Enter your first number:'); number2 = prompt('Enter your second number:'); number3 = prompt('Enter your third number:'); number4 = prompt('Enter your fourth number:'); number5 = prompt('Enter your fifth number:');  alert( number1 + number2 + number3 + number4 + number5 );">Test out this script now.</button>
+</p>
+
+<p>
+There is a problem. Let's say that we enter, in order, 10, 20, &ndash;5, 3.3333, 6.6667. The total should be 35. And yet, the alert reports &quot;1020&ndash;53.33336.6667&quot; We forgot to manage the fact that <span class="code highlight">prompt(&nbsp;)</span> insists that user responses are text, which then forces the <span class="code highlight">+</span> operator to promote from arithmetic addition to string concatenation. We will need to fix this by putting all 5 <span class="code highlight">prompt(&nbsp;)</span> functions inside of either a <span class="code highlight">parseFloat(&nbsp;)</span> (or a <span class="code highlight">parseInt(&nbsp;)</span> function).
+</p>
+
+<p>
+Note: because two of the test values were decimal, <span class="code highlight">parseFloat(&nbsp;)</span> was selected.
+</p>
+
+<p>
+Protip: use the Find &amp; Replace option in your code editor to apply all 5 changes quickly. (Pay attention to whether these are the only <span class="code highlight">prompt(&nbsp;)</span> functions in your code, in which case just use the Replace All, or else just carefully align the Finder to the beginning of this block and Replace Next for each of the 5 instances. Either way, do <em>not</em> forget to close the parentheses that will be opened this way.
+</p>
+
+
+
+<h3> Version 0.7: </h3>
+
+<pre class="codeblock highlight">
+&lt;script&gt;
+
+// prompts now to be parsed as floating-point decimals, 
+// parentheses matching checked
+number1 = parseFloat(prompt(&apos;Enter your first number:&apos;));
+number2 = parseFloat(prompt(&apos;Enter your second number:&apos;));
+number3 = parseFloat(prompt(&apos;Enter your third number:&apos;));
+number4 = parseFloat(prompt(&apos;Enter your fourth number:&apos;));
+number5 = parseFloat(prompt(&apos;Enter your fifth number:&apos;));
+
+// apostrophes REMOVED
+alert( number1 + number2 + number3 + number4 + number5 ); 
+
+&lt;/script&gt;
+</pre>
+
+<p>
+<button class="sample" onclick="number1 = parseFloat(prompt('Enter your first number:')); number2 = parseFloat(prompt('Enter your second number:')); number3 = parseFloat(prompt('Enter your third number:')); number4 = parseFloat(prompt('Enter your fourth number:')); number5 = parseFloat(prompt('Enter your fifth number:'));  alert( number1 + number2 + number3 + number4 + number5 );">Test out this script now.</button>
+</p>
+
+<p>
+Finally, we have achieved 35, the expected summation for 10, 20, &ndash;5, 3.3333, and 6.6667. But does our script work? That depends. Technically, it does what we told it to do. However, way back at the beginning, the goal was to find the arithmetic mean of 5 user-provided numbers. We haven't told the script to do that part yet. So...
+</p>
+
+
+
+
+
+<h3> Version 0.8: </h3>
+
+<pre class="codeblock highlight">
+&lt;script&gt;
+
+// prompts now to be parsed as floating-point decimals, 
+// parentheses matching checked
+number1 = parseFloat(prompt(&apos;Enter your first number:&apos;));
+number2 = parseFloat(prompt(&apos;Enter your second number:&apos;));
+number3 = parseFloat(prompt(&apos;Enter your third number:&apos;));
+number4 = parseFloat(prompt(&apos;Enter your fourth number:&apos;));
+number5 = parseFloat(prompt(&apos;Enter your fifth number:&apos;));
+
+// apostrophes REMOVED, tested, it works, this line is no longer needed as is.
+// alert( number1 + number2 + number3 + number4 + number5 ); 
+sum = ( number1 + number2 + number3 + number4 + number5 ); 
+mean = sum/5;
+
+output = 'The artihmetic sum of ';
+output += number1 + ', ';
+output += number2 + ', ';
+output += number3 + ', ';
+output += number4 + ', and ';
+output += number5 + ' is ' + mean + '.';
+alert(output);
+
+&lt;/script&gt;
+</pre>
+
+<p>
+<button class="sample" onclick="number1 = parseFloat(prompt('Enter your first number:')); number2 = parseFloat(prompt('Enter your second number:')); number3 = parseFloat(prompt('Enter your third number:')); number4 = parseFloat(prompt('Enter your fourth number:')); number5 = parseFloat(prompt('Enter your fifth number:')); sum = number1 + number2 + number3 + number4 + number5; mean = sum/5; alert('The arithmetic sum of ' + number1 + ', ' + number2 + ', ' + number3 + ', ' + number4 + ', and ' + number5 + ' is ' + mean + '.');">Test out this script now.</button>
+</p>
+
+<p>
+Finally, the script works and meets its goal. Let's review the kind of errors that we have encountered. Keep in mind that there are Three Types of Programming Errors.
+</p>
+
+<ul>
+<li> <em>syntax errors</em>: basically a typo, although usually it's some functional punctuation missing, included, unpaired, or unescaped. </li>
+<li> <em>runtime errors</em>: mistakes that generally happen during the script execution; often, this is when a user event is out of bounds for the script that is written. </li>
+<li> <em>logic errors</em>: when a script technically works flawlessly but doesn't address the scripting goals.</li>
+</ul>
+
+<p>
+Notice that we had a syntax error and mutliple logic errors. And we still have the opportunity for runtime errors because nothing prevents a user from entering a string literal that cannot be parsed as a floating-point decimal.
+</p>
+
+</section>
+
+
+
+
+
+<section>
+<h2> This Week's Assignment(s): </h2>
+
+<ol>
+<li>
+Individual Built-It Task (iBIT): Incorporate the following broken code into a webpage. Fix its mistakes (Note: there are at least 4 errors). Ultimately, when it works, it will calculate the hyponteuse of a right triangle given two floating-point legs supplied by the user, and then alert that calculation to the user. (Test: 0.5 and 1.2 should yield 1.3).
+<pre class="codeblock highlight">
+&lt;script&gt;
+
+a = parseInt( prompt( 'Enter side A: ' );
+b = parseInt( prompt( 'Enter side B: ' );
+c = Math.sqrt( a*a + b*b );
+
+output += 'A right triangle with legs ' + a + ' and ' + b;
+output += ' has hypotenuse ' + c';
+
+&lt;/script&gt;
+</pre>
+
+</li>
+<li>
+Group Built-It Task (gBIT): Build a small script that will receive from a user the three coefficients (a,b,c) from a quadratic form (ax<sup>2</sup>&nbsp;+&nbsp;bx&nbsp;+&nbsp;c&nbsp;=&nbsp;0), and then report to the user the axes of symmetry x = &nbsp;b/(2a) and the approximate values of the roots (note: you will likely need to use <span class="code highlight">Math.sqrt(&nbsp;);</span> functions to calculate the roots x&nbsp;=&nbsp;(&ndash;b&nbsp;&plusmn;&radic;(b<sup>2</sup>&ndash;4ac))&nbsp;/&nbsp;(2a). For an extra challenge, build this so that the information is written into the body of a document that loads into the browser (as opposed to merely alerting it in pop-up windows).
+</li>
+<li>
+Individual Reaction Response (iRR): What mistake have you caught yourself making? What habits should you form that will prevent or repair scripting mistakes? How is the experience of coding scripts different from the coding HTML and CSS? How is it similar?
+</li>
+</ol>
+
+
+</section>
+
+<footer>
+ <script>
+    buildFooter( );
+ </script>
+</footer>
+
+</body>
+</html>
